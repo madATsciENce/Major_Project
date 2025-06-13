@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yercaud Camping Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #35424a;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('places-to-visit-in-yercaud.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45b962;
+        }
+
+        section {
+            padding: 50px 20px;
+        }
+
+        .camping-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #35424a;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Yercaud Camping Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#camping-areas">Camping Stays</a></li>
+                    <li><a href="#top-sites">Sites to See</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#map-section">Map</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Discover the Beauty of Yercaud</h2>
+            <p>Experience the serenity and breathtaking landscapes of Yercaud.</p>
+            <button>Book Your Camping Stay</button>
+        </div>
+    </section>
+
+    <section id="camping-areas">
+        <h2>Top 10 Camping Stays in Yercaud</h2>
+        <div class="camping-cards">
+            <div class="card">
+                <img src="yercaud lake.jpg" alt="Camp 1">
+                <h3>Yercaud Lake Camp</h3>
+                <p>Location: Yercaud</p>
+                <p>Rent: ₹3500/night</p>
+                <p>Enjoy views of the serene lake.</p>
+            </div>
+            <div class="card">
+                <img src="cloudy Hill camp.jpg
+" alt="Camp 2">
+                <h3>Cloudy Hills Camp</h3>
+                <p>Location: Yercaud</p>
+                <p>Rent: ₹3700/night</p>
+                <p>A peaceful retreat in the hills.</p>
+            </div>
+            <div class="card">
+                <img src="Green Valley camp.jpg" alt="Camp 3">
+                <h3>Green Valley Camp</h3>
+                <p>Location: Yercaud</p>
+                <p>Rent: ₹3200/night</p>
+                <p>Relax in the lush green surroundings.</p>
+            </div>
+            <div class="card">
+                <img src="Hilltop escape yercaud.jpg" alt="Camp 4">
+                <h3>Hilltop Escape</h3>
+                <p>Location: Yercaud</p>
+                <p>Rent: ₹4000/night</p>
+                <p>Enjoy panoramic views of the valley.</p>
+            </div>
+            <div class="card">
+                <img src="forest Retreat camp yercaud.jpg" alt="Camp 5">
+                <h3>Forest Retreat Camp</h3>
+                <p>Location: Yercaud</p>
+                <p>Rent: ₹2900/night</p>
+                <p>Immerse yourself in the wilderness.</p>
+            </div>
+            <div class="card">
+                <img src="adventure base Camp yercaud.jpg" alt="Camp 6">
+                <h3>Adventure Base Camp</h3>
+                <p>Location: Yercaud</p>
+                <p>Rent: ₹3100/night</p>
+                <p>Perfect for adventure enthusiasts.</p>
+            </div>
+            <div class="card">
+                <img src="whispering pine camp yercaud.jpg
+" alt="Camp 7">
+                <h3>Whispering Pines Camp</h3>
+                <p>Location: Yercaud</p>
+                <p>Rent: ₹3600/night</p>
+                <p>Experience stunning views of the pines.</p>
+            </div>
+            <div class="card">
+                <img src="Lakeview camp yercaud.jpg" alt="Camp 8">
+                <h3>Lake View Camp</h3>
+                <p>Location: Yercaud</p>
+                <p>Rent: ₹3800/night</p>
+                <p>Wake up to the sound of the lake.</p>
+            </div>
+            <div class="card">
+                <img src="Valley View camp yercaud.jpg
+" alt="Camp 9">
+                <h3>Valley View Camp</h3>
+                <p>Location: Yercaud</p>
+                <p>Rent: ₹3400/night</p>
+                <p>Relax in a stunning valley setting.</p>
+            </div>
+            <div class="card">
+                <img src="nature bliss camp yercaud.jpg
+" alt="Camp 10">
+                <h3>Nature's Bliss Camp</h3>
+                <p>Location: Yercaud</p>
+                <p>Rent: ₹3500/night</p>
+                <p>Reconnect with nature in a tranquil atmosphere.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top 10 Sites to See in Yercaud</h2>
+        <div class="site-cards">
+            <div class="site-card">
+                <img src="yercaud lake.jpg" alt="Yercaud Lake">
+                <h3>Yercaud Lake</h3>
+                <p>Enjoy boating and a scenic walk around the lake.</p>
+            </div>
+            <div class="site-card">
+                <img src="Pagoda point.jpg" alt="Pagoda Point">
+                <h3>Pagoda Point</h3>
+                <p>A viewpoint offering panoramic views of the valley.</p>
+            </div>
+            <div class="site-card">
+                <img src="ladies seat.jpg" alt="Lady's Seat">
+                <h3>Lady's Seat</h3>
+                <p>Perfect for a relaxing evening with sunset views.</p>
+            </div>
+            <div class="site-card">
+                <img src="kiliyur Falls.jpg
+" alt="Killiyur Falls">
+                <h3>Killiyur Falls</h3>
+                <p>A beautiful waterfall surrounded by lush greenery.</p>
+            </div>
+            <div class="site-card">
+                <img src="botanical garden yercaud.jpg
+" alt="Botanical Garden">
+                <h3>Botanical Garden</h3>
+                <p>Home to a variety of plants and a peaceful atmosphere.</p>
+            </div>
+            <div class="site-card">
+                <img src="shevaroy Temple.jpg
+" alt="Shevaroy Temple">
+                <h3>Shevaroy Temple</h3>
+                <p>A temple situated atop the hills with stunning views.</p>
+            </div>
+            <div class="site-card">
+                <img src="grandma's rock a popular picnic spot.jpg">
+                <h3>Grandma's Rock</h3>
+                <p>A popular picnic spot with breathtaking views.</p>
+            </div>
+            <div class="site-card">
+                <img src="loop Road.JPG" alt="Loop Road">
+                <h3>Loop Road</h3>
+                <p>A scenic drive perfect for a leisurely outing.</p>
+            </div>
+            <div class="site-card">
+                <img src="silk farm yercaud.jpg" alt="Silk Farm">
+                <h3>Silk Farm</h3>
+                <p>Learn about silk production and enjoy the lush gardens.</p>
+            </div>
+            <div class="site-card">
+                <img src="bear Shola Falls.jpg" alt="Bear Shola Falls">
+                <h3>Bear Shola Falls</h3>
+                <p>Another stunning waterfall great for nature walks.</p>
+            </div>
+        </div>
+    </section>
+
+   <section id="transport">
+    <h2>Transport Options</h2>
+    <p>Yercaud is well connected by road. You can reach here by:</p>
+    <ul>
+        <li>
+            <img src="car.avif" height="40" width="40" alt="Private Car" style="vertical-align: middle; margin-right: 10px;">
+            <strong>Private Car:</strong> 
+            Drive through scenic routes from nearby cities like Salem. The drive offers beautiful views of the hills and valleys.
+        </li>
+        <li>
+            <img src="bus.jpg" height="40" width"40" alt="Bus Services" style="vertical-align: middle; margin-right: 10px;">
+            <strong>Bus Services from Salem:</strong> 
+            Frequent and affordable bus services operate from Salem, making it a convenient option for travelers.
+        </li>
+        <li>
+            <img src="taxi logo.jpg" height="40" width="40" alt="Taxi Services" style="vertical-align: middle; margin-right: 10px;">
+            <strong>Taxi Services:</strong> 
+            Taxis are readily available for hire from nearby towns, providing a comfortable and flexible way to reach Yercaud.
+        </li>
+    </ul>
+</section>
+
+
+    <section id="services">
+    <h2>Available Services</h2>
+    <p>We offer a range of services for a comfortable stay:</p>
+    <ul>
+        <li>Tent Rentals</li>
+        <li>Guided Tours</li>
+        <li>Barbecue Facilities</li>
+        <li>Firewood and Supplies</li>
+        <li>Camping Gear Rentals</li>
+        <li>Food & Beverage Services</li>
+        <li>Wildlife Watching Tours</li>
+        <li>Photography Workshops</li>
+        <li>Yoga & Meditation Sessions</li>
+        <li>Campfire Arrangements</li>
+        <li>First Aid & Emergency Support</li>
+        <li>Restroom Facilities</li>
+        <li>24/7 Customer Support</li>
+        <li>Transportation Arrangements</li>
+        <li>Local Cultural Experiences</li>
+    </ul>
+</section>
+
+
+    <section id="reviews">
+    <h2>Customer Reviews</h2>
+    <div>
+        <h3>John Doe</h3>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>"The camping experience was amazing! The views were breathtaking."</p>
+    </div>
+    <div>
+        <h3>Jane Smith</h3>
+        <p>⭐⭐⭐⭐</p>
+        <p>"Loved the tranquility of Yercaud! Perfect getaway."</p>
+    </div>
+    <div>
+        <h3>Mark Johnson</h3>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>"A perfect blend of adventure and relaxation. Highly recommend!"</p>
+    </div>
+    <div>
+        <h3>Emily Davis</h3>
+        <p>⭐⭐⭐⭐</p>
+        <p>"Great facilities and friendly staff. Will definitely come back!"</p>
+    </div>
+    <div>
+        <h3>Michael Brown</h3>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>"The guided tours were fantastic! Learned so much about the local wildlife."</p>
+    </div>
+    <div>
+        <h3>Sarah Wilson</h3>
+        <p>⭐⭐⭐⭐</p>
+        <p>"Enjoyed the barbecue night with friends. A memorable experience!"</p>
+    </div>
+    <div>
+        <h3>David Lee</h3>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>"Absolutely loved the peaceful surroundings and beautiful landscapes."</p>
+    </div>
+    <div>
+        <h3>Anna Kim</h3>
+        <p>⭐⭐⭐⭐</p>
+        <p>"Wonderful camping experience. The yoga sessions were a highlight for me!"</p>
+    </div>
+</section>
+
+
+    <section id="map-section">
+        <h2>Map of Yercaud</h2>
+        <div id="map"></div>
+    </section>
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or need more information, feel free to reach out to us:</p>
+    <ul>
+        <li><strong>Email:</strong> info@yercaudcamping.com</li>
+        <li><strong>Phone:</strong> +91 123 456 7890</li>
+        <li><strong>Address:</strong> Yercaud Camping Site, Yercaud, Tamil Nadu, India</li>
+    </ul>
+    <h3>Get in Touch</h3>
+    <form action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+        
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+
+    <footer>
+        <p>&copy; 2024 Yercaud Camping Experience</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([11.7838, 78.6572], 12); // Yercaud coordinates
+
+        // Add a tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Add a marker
+        L.marker([11.7838, 78.6572]).addTo(map)
+            .bindPopup('Yercaud, Tamil Nadu')
+            .openPopup();
+    </script>
+
+</body>
+</html>

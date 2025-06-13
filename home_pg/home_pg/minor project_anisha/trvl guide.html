@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishikesh Travel Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #2E8B57;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #2E8B57;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            margin-bottom: 10px;
+        }
+
+        .photo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .map-container {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        #map {
+            width: 100%;
+            height: 400px;
+            margin: 0 auto;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hotel-list, .attraction-list, .restaurant-list, .activity-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .hotel-list li, .attraction-list li, .restaurant-list li, .activity-list li {
+            margin-bottom: 15px;
+        }
+
+        .review {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Rishikesh Travel Guide</h1>
+    </header>
+
+    <nav>
+        <a href="#hotels">Hotels</a>
+        <a href="#attractions">Attractions</a>
+        <a href="#restaurants">Restaurants</a>
+        <a href="#activities">Adventure</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#location">Location</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- Introduction Section with Image -->
+        <section id="intro" class="section">
+            <h2>The Yoga Capital of the World</h2>
+            <div class="photo-grid">
+                <img src="a.jpg" alt="Yoga session in Rishikesh">
+                <img src="b.jpg" alt="Ganges river in Rishikesh">
+            </div>
+            <p>Rishikesh is a serene blend of spirituality, nature, and adventure. From its ancient temples and yoga
+                ashrams to thrilling river rafting, Rishikesh offers experiences for every traveler.</p>
+        </section>
+
+        <!-- Hotels Section with Images -->
+        <section id="hotels" class="section">
+            <h2>Popular Hotels in Rishikesh</h2>
+            <ul class="hotel-list">
+                <li>
+                    <strong>Aloha on the Ganges</strong> - ₹5,500 per night | 4.5/5 <br><br>
+                    <div class="photo-grid">
+                        <img src="c.jpg" alt="Aloha on the Ganges Hotel">
+                    </div>
+                </li>
+                <li>
+                    <strong>The Glasshouse on the Ganges</strong> - ₹6,000 per night | 4.7/5 <br><br>
+                    <div class="photo-grid">
+                        <img src="d.jpg" alt="The Glasshouse Hotel">
+                    </div>
+                </li>
+                <li>
+                    <strong>Zostel Rishikesh</strong> - ₹1,500 per night | 4.3/5 <br><br>
+                    <div class="photo-grid">
+                        <img src="e.jpg" alt="Zostel Rishikesh">
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Attractions Section with Images -->
+        <section id="attractions" class="section">
+            <h2>Top Attractions in Rishikesh</h2>
+            <ul class="attraction-list">
+                <li>
+                    <strong>Lakshman Jhula</strong> - Iconic suspension bridge with stunning views of the Ganges.<br><br>
+                    <div class="photo-grid">
+                        <img src="f.webp" alt="Lakshman Jhula">
+                    </div>
+                </li>
+                <li>
+                    <strong>The Beatles Ashram</strong> - Explore the artistic ruins where the Beatles once meditated.<br><br>
+                    <div class="photo-grid">
+                        <img src="g.jpg" alt="The Beatles Ashram">
+                    </div>
+                </li>
+                <li>
+                    <strong>Triveni Ghat</strong> - Join the evening Ganga Aarti for a spiritual experience.<br><br>
+                    <div class="photo-grid">
+                        <img src="https://example.com/triveni-ghat.jpg" alt="Triveni Ghat">
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Restaurants Section with Images -->
+        <section id="restaurants" class="section">
+            <h2>Best Restaurants in Rishikesh</h2>
+            <ul class="restaurant-list">
+                <li>
+                    <strong>The 60’s Cafe (The Beatles Cafe)</strong> - Organic vegetarian food with views of the Ganges.
+                    <div class="photo-grid">
+                        <img src="https://example.com/60s-cafe.jpg" alt="The 60's Cafe">
+                    </div>
+                </li>
+                <li>
+                    <strong>Chotiwala Restaurant</strong> - Traditional Indian meals and homely hospitality.
+                    <div class="photo-grid">
+                        <img src="https://example.com/chotiwala.jpg" alt="Chotiwala Restaurant">
+                    </div>
+                </li>
+                <li>
+                    <strong>Cafe Karma</strong> - Laid-back cafe offering Indian and Continental dishes.
+                    <div class="photo-grid">
+                        <img src="https://example.com/cafe-karma.jpg" alt="Cafe Karma">
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Adventure Section with Images -->
+        <section id="activities" class="section">
+            <h2>Adventure Activities in Rishikesh</h2>
+            <ul class="activity-list">
+                <li>
+                    <strong>River Rafting</strong> - White-water rafting in the Ganges for thrill-seekers.
+                    <div class="photo-grid">
+                        <img src="https://example.com/river-rafting.jpg" alt="River Rafting in Rishikesh">
+                    </div>
+                </li>
+                <li>
+                    <strong>Bungee Jumping</strong> - Jump over the scenic Shivalik Hills for an adrenaline rush.
+                    <div class="photo-grid">
+                        <img src="https://example.com/bungee-jumping.jpg" alt="Bungee Jumping in Rishikesh">
+                    </div>
+                </li>
+                <li>
+                    <strong>Camping & Trekking</strong> - Enjoy camping by the river and exploring mountain trails.
+                    <div class="photo-grid">
+                        <img src="https://example.com/camping.jpg" alt="Camping in Rishikesh">
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Map Section -->
+        <section id="location" class="section">
+            <h2>Rishikesh Location</h2>
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews" class="section">
+            <h2>Traveler Reviews</h2>
+            <div class="review">
+                <p><strong>John Doe:</strong> "Rishikesh is magical! From yoga retreats to river rafting, there's so much
+                    to do. The Ganga Aarti at Triveni Ghat was a highlight of my trip."</p>
+            </div>
+            <div class="review">
+                <p><strong>Jane Smith:</strong> "I stayed at Aloha on the Ganges, and the view was breathtaking. The
+                    city’s peaceful vibe is truly rejuvenating."</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Rishikesh Travel Guide. All rights reserved.</p>
+    </footer>
+
+    <!-- Google Maps Embed Code -->
+    <script>
+        function initMap() {
+            var rishikesh = { lat: 30.0869, lng: 78.2676 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: rishikesh
+            });
+
+            // Marker for Rishikesh
+            var marker = new google.maps.Marker({
+                position: rishikesh,
+                map: map,
+                title: 'Rishikesh, India'
+            });
+        }
+    </script>
+   
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55235.6388216746!2d78.2294089949136!3d30.08767232457314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m21s0x39093e67cf93f111%3A0xcc78804a6f941bfe!2sRishikesh%2C%20Uttarakhand!5e0!3m2!1sen!2sin!4v1727790352038!5m2!1sen!2sin" width="600" height="450"></iframe>
+     
+</body>
+
+</html>

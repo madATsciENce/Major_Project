@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikkim Mountain Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('sikkim.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #hotels, #top-sites, #services, #transport, #reviews, #contact {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Sikkim Mountain Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Discover the Beauty of Sikkim</h2>
+            <p>Immerse yourself in breathtaking landscapes and vibrant culture.</p>
+            <button>Book Your Stay</button>
+        </div>
+    </section>
+
+    <section id="hotels">
+        <h2>Top Hotels & Homestays in Sikkim</h2>
+        <div class="hotel-cards">
+            <!-- Hotel 1 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Sikkim+Hotel+1" alt="Hotel 1">
+                <h3>Snow View Resort</h3>
+                <p>Location: Gangtok</p>
+                <p>Rent: ₹5000/night</p>
+            </div>
+            <!-- Hotel 2 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Sikkim+Hotel+2" alt="Hotel 2">
+                <h3>Himalayan Retreat</h3>
+                <p>Location: Lachung</p>
+                <p>Rent: ₹4500/night</p>
+            </div>
+            <!-- Hotel 3 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Sikkim+Hotel+3" alt="Hotel 3">
+                <h3>Valley View Homestay</h3>
+                <p>Location: Pelling</p>
+                <p>Rent: ₹4000/night</p>
+            </div>
+            <!-- Hotel 4 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Sikkim+Hotel+4" alt="Hotel 4">
+                <h3>Evergreen Lodge</h3>
+                <p>Location: Namchi</p>
+                <p>Rent: ₹3500/night</p>
+            </div>
+            <!-- Hotel 5 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Sikkim+Hotel+5" alt="Hotel 5">
+                <h3>Alpine Bliss Inn</h3>
+                <p>Location: Ravangla</p>
+                <p>Rent: ₹4200/night</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top Sites to See in Sikkim</h2>
+        <div class="site-cards">
+            <!-- Site 1 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Tsomgo+Lake" alt="Tsomgo Lake">
+                <h3>Tsomgo Lake</h3>
+                <p>A stunning glacial lake surrounded by snow-capped mountains.</p>
+            </div>
+            <!-- Site 2 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Rumtek+Monastery" alt="Rumtek Monastery">
+                <h3>Rumtek Monastery</h3>
+                <p>A spiritual hub and an architectural marvel.</p>
+            </div>
+            <!-- Site 3 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Yumthang+Valley" alt="Yumthang Valley">
+                <h3>Yumthang Valley</h3>
+                <p>Known as the "Valley of Flowers," ideal for nature lovers.</p>
+            </div>
+            <!-- Site 4 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Gurudongmar+Lake" alt="Gurudongmar Lake">
+                <h3>Gurudongmar Lake</h3>
+                <p>One of the highest lakes in the world, a sight to behold.</p>
+            </div>
+            <!-- Site 5 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Khangchendzonga+National+Park" alt="Khangchendzonga National Park">
+                <h3>Khangchendzonga National Park</h3>
+                <p>A UNESCO World Heritage Site with diverse flora and fauna.</p>
+            </div>
+            <!-- Site 6 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Zuluk+Loop" alt="Zuluk Loop">
+                <h3>Zuluk Loop</h3>
+                <p>A scenic zigzag road offering mesmerizing views.</p>
+            </div>
+            <!-- Site 7 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Namchi+Chardham" alt="Namchi Chardham">
+                <h3>Namchi Chardham</h3>
+                <p>A pilgrimage site with magnificent replicas of famous temples.</p>
+            </div>
+            <!-- Site 8 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Pelling+Skywalk" alt="Pelling Skywalk">
+                <h3>Pelling Skywalk</h3>
+                <p>India's first glass skywalk with breathtaking views.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="map">
+        <h2>Interactive Sikkim Map</h2>
+        <div id="map"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Sikkim Mountain Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize map
+        const map = L.map('map').setView([27.6, 88.4], 8);
+
+        // Add map tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add markers
+        L.marker([27.3, 88.6]).addTo(map).bindPopup('Gangtok').openPopup();
+        L.marker([27.4, 88.1]).addTo(map).bindPopup('Pelling');
+        L.marker([27.7, 88.6]).addTo(map).bindPopup('Tsomgo Lake');
+    </script>
+</body>
+</html>

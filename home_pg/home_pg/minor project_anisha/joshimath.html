@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshimath Mountain Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('josi1.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #hotels, #top-sites, #services, #transport, #contact {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Joshimath Mountain Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Discover the Beauty of Joshimath Mountains</h2>
+            <p>Experience breathtaking views and serene landscapes.</p>
+            <button>Book Your Stay</button>
+        </div>
+    </section>
+
+    <section id="hotels">
+        <h2>Top Hotels & Homestays in Joshimath</h2>
+        <div class="hotel-cards">
+            <!-- Hotel 1 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Joshimath+Hotel+1" alt="Hotel 1">
+                <h3>Himalayan Retreat</h3>
+                <p>Location: Near Auli Road</p>
+                <p>Rent: ₹4000/night</p>
+            </div>
+            <!-- Hotel 2 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Joshimath+Hotel+2" alt="Hotel 2">
+                <h3>Auli Resort</h3>
+                <p>Location: Auli</p>
+                <p>Rent: ₹3500/night</p>
+            </div>
+            <!-- Hotel 3 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Joshimath+Hotel+3" alt="Hotel 3">
+                <h3>Snow View Lodge</h3>
+                <p>Location: Tapovan</p>
+                <p>Rent: ₹3000/night</p>
+            </div>
+            <!-- Hotel 4 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Joshimath+Hotel+4" alt="Hotel 4">
+                <h3>Mountain Paradise</h3>
+                <p>Location: Joshimath Market</p>
+                <p>Rent: ₹4500/night</p>
+            </div>
+            <!-- Hotel 5 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Joshimath+Hotel+5" alt="Hotel 5">
+                <h3>Alpine Homestay</h3>
+                <p>Location: Near Gurudwara</p>
+                <p>Rent: ₹2500/night</p>
+            </div>
+            <!-- Hotel 6 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Joshimath+Hotel+6" alt="Hotel 6">
+                <h3>Nature's Nook</h3>
+                <p>Location: Outside City</p>
+                <p>Rent: ₹3000/night</p>
+            </div>
+            <!-- Hotel 7 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Joshimath+Hotel+7" alt="Hotel 7">
+                <h3>Himalaya Heights</h3>
+                <p>Location: Joshimath</p>
+                <p>Rent: ₹4200/night</p>
+            </div>
+            <!-- Hotel 8 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Joshimath+Hotel+8" alt="Hotel 8">
+                <h3>Shivalik Hotel</h3>
+                <p>Location: Near Auli</p>
+                <p>Rent: ₹3700/night</p>
+            </div>
+            <!-- Hotel 9 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Joshimath+Hotel+9" alt="Hotel 9">
+                <h3>Mount View Cottage</h3>
+                <p>Location: Joshimath</p>
+                <p>Rent: ₹2800/night</p>
+            </div>
+            <!-- Hotel 10 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Joshimath+Hotel+10" alt="Hotel 10">
+                <h3>Cloud Nine Resort</h3>
+                <p>Location: Near Tapovan</p>
+                <p>Rent: ₹3600/night</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top Sites to See in Joshimath</h2>
+        <div class="site-cards">
+            <!-- Site 1 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Narsingh+Temple" alt="Narsingh Temple">
+                <h3>Narsingh Temple</h3>
+                <p>A sacred temple dedicated to Lord Vishnu.</p>
+            </div>
+            <!-- Site 2 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Auli+Slope" alt="Auli Slope">
+                <h3>Auli Slope</h3>
+                <p>Famous for skiing and stunning views.</p>
+            </div>
+            <!-- Site 3 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Bhavishya+Kedar" alt="Bhavishya Kedar">
+                <h3>Bhavishya Kedar</h3>
+                <p>An ancient temple with rich history.</p>
+            </div>
+            <!-- Site 4 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Ghangaria" alt="Ghangaria">
+                <h3>Ghangaria</h3>
+                <p>A beautiful village near Valley of Flowers.</p>
+            </div>
+            <!-- Site 5 -->
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Tapovan" alt="Tapovan">
+                <h3>Tapovan</h3>
+                <p>A scenic spot for trekking and nature walks.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Guided Tours</li>
+            <li>Trekking Services</li>
+            <li>Adventure Sports</li>
+            <li>Local Cuisine Experience</li>
+            <li>Transport Services</li>
+            <li>Emergency Assistance</li>
+        </ul>
+    </section>
+
+    <section id="transport">
+        <h2>Transport Options</h2>
+        <ul>
+            <li>Local Buses: Regular buses from major cities.</li>
+            <li>Taxi Services: Easily available for hire.</li>
+            <li>Bike Rentals: Explore at your own pace.</li>
+            <li>Cable Car: A scenic ride to Auli.</li>
+        </ul>
+    </section>
+
+    <section id="map">
+        <h2>Location Map</h2>
+        <div id="map"></div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to reach out:</p>
+        <p>Email: contact@joshimathmountainexperience.com</p>
+        <p>Phone: +91 123 456 7890</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Joshimath Mountain Experience. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([30.5914, 79.6078], 12); // Coordinates for Joshimath
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+        L.marker([30.5914, 79.6078]).addTo(map)
+            .bindPopup('Joshimath, Uttarakhand')
+            .openPopup();
+    </script>
+
+</body>
+</html>

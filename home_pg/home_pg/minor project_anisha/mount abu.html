@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mount Abu Mountain Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('MA.jpeg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #hotels, #top-sites, #services, #transport, #reviews, #contact {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Mount Abu Mountain Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Discover the Beauty of Mount Abu</h2>
+            <p>Experience the lush green mountains and serene lakes.</p>
+            <button>Book Your Stay</button>
+        </div>
+    </section>
+
+    <section id="hotels">
+        <h2>Top Hotels & Homestays in Mount Abu</h2>
+        <div class="hotel-cards">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+1" alt="Hotel 1">
+                <h3>Hilltop Resort</h3>
+                <p>Location: Central Mount Abu</p>
+                <p>Rent: ₹4500/night</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+2" alt="Hotel 2">
+                <h3>Lakeview Homestay</h3>
+                <p>Location: Nakki Lake</p>
+                <p>Rent: ₹4000/night</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+3" alt="Hotel 3">
+                <h3>Sunrise Lodge</h3>
+                <p>Location: Sunset Point</p>
+                <p>Rent: ₹3500/night</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+4" alt="Hotel 4">
+                <h3>Mountain Bliss</h3>
+                <p>Location: Delwara</p>
+                <p>Rent: ₹5000/night</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+5" alt="Hotel 5">
+                <h3>Cloud Nine Inn</h3>
+                <p>Location: Achalgarh</p>
+                <p>Rent: ₹4200/night</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top Sites to See in Mount Abu</h2>
+        <div class="site-cards">
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Nakki+Lake" alt="Nakki Lake">
+                <h3>Nakki Lake</h3>
+                <p>A serene lake perfect for boating.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Dilwara+Temples" alt="Dilwara Temples">
+                <h3>Dilwara Temples</h3>
+                <p>Famous for their intricate marble carvings.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Guru+Shikhar" alt="Guru Shikhar">
+                <h3>Guru Shikhar</h3>
+                <p>The highest peak in Rajasthan.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Sunset+Point" alt="Sunset Point">
+                <h3>Sunset Point</h3>
+                <p>A mesmerizing spot to enjoy the sunset.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Achalgarh+Fort" alt="Achalgarh Fort">
+                <h3>Achalgarh Fort</h3>
+                <p>An ancient fort with a scenic view.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Toad+Rock" alt="Toad Rock">
+                <h3>Toad Rock</h3>
+                <p>A famous rock formation resembling a toad.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Peace+Park" alt="Peace Park">
+                <h3>Peace Park</h3>
+                <p>A beautiful garden for relaxation.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Mount+Abu+Wildlife+Sanctuary" alt="Mount Abu Wildlife Sanctuary">
+                <h3>Wildlife Sanctuary</h3>
+                <p>Home to a variety of flora and fauna.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Trevor's+Tank" alt="Trevor's Tank">
+                <h3>Trevor's Tank</h3>
+                <p>A popular picnic spot.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Honeymoon+Point" alt="Honeymoon Point">
+                <h3>Honeymoon Point</h3>
+                <p>A scenic viewpoint for couples.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Travel booking assistance</li>
+            <li>Guided tours</li>
+            <li>Local transport arrangements</li>
+            <li>Special honeymoon packages</li>
+            <li>Adventure and trekking activities</li>
+        </ul>
+    </section>
+
+    <section id="transport">
+        <h2>Transport Information</h2>
+        <div id="map"></div>
+    </section>
+
+    <section id="reviews">
+        <h2>What Our Visitors Say</h2>
+        <p>★★★★☆ "Had an amazing experience at Mount Abu. Great service!" - Priya S.</p>
+        <p>★★★★★ "Highly recommended for families. The scenery is breathtaking." - Rahul M.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: info@mountabumountainexperience.com</p>
+        <p>Phone: +91-9876543210</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Mount Abu Mountain Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize map
+        var map = L.map('map').setView([24.5925, 72.7156], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+            maxZoom: 18,
+        }).addTo(map);
+    </script>
+
+</body>
+</html>

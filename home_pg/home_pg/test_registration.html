@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Registration - Safar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #007cba;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background: #005a87;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #cce5ff;
+            color: #004085;
+            border: 1px solid #b3d9ff;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Registration Test Tool</h1>
+        
+        <div class="info">
+            <strong>Instructions:</strong><br>
+            1. First, run the database setup in phpMyAdmin<br>
+            2. Then test registration here<br>
+            3. If this works, your main registration will work too!
+        </div>
+
+        <form id="testForm">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" value="sumita" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="sumita.test@gmail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" value="9876543210" maxlength="10" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" value="12" min="1" max="120" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female" selected>Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" value="test123" required>
+            </div>
+
+            <button type="submit">🚀 Test Registration</button>
+        </form>
+
+        <div id="result" class="result"></div>
+
+        <hr style="margin: 30px 0;">
+        
+        <h3>📋 Database Setup Instructions:</h3>
+        <ol>
+            <li>Open <a href="http://localhost/phpmyadmin" target="_blank">phpMyAdmin</a></li>
+            <li>Click on "SQL" tab</li>
+            <li>Copy the content from <strong>manual_database_setup.sql</strong> file</li>
+            <li>Paste it in the SQL box and click "Go"</li>
+            <li>Come back here and test registration</li>
+        </ol>
+
+        <h3>🔧 Quick Database Check:</h3>
+        <button onclick="checkDatabase()" style="width: auto; margin: 10px 5px;">Check Database</button>
+        <button onclick="testConnection()" style="width: auto; margin: 10px 5px;">Test Connection</button>
+        
+        <div id="dbResult" class="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('testForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '⏳ Testing registration...';
+            
+            const formData = new FormData();
+            formData.append('action', 'register');
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('age', document.getElementById('age').value);
+            formData.append('gender', document.getElementById('gender').value);
+            formData.append('password', document.getElementById('password').value);
+            
+            try {
+                const response = await fetch('simple_register.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        ✅ <strong>Registration Successful!</strong><br>
+                        ${data.message}<br><br>
+                        🎉 Your registration system is working perfectly!<br>
+                        You can now use the main registration form on your homepage.
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `
+                        ❌ <strong>Registration Failed:</strong><br>
+                        ${data.message}<br><br>
+                        💡 <strong>Common solutions:</strong><br>
+                        • Try a different email address<br>
+                        • Make sure database is set up<br>
+                        • Check if all fields are filled correctly
+                    `;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    ❌ <strong>Connection Error:</strong><br>
+                    ${error.message}<br><br>
+                    💡 <strong>Possible causes:</strong><br>
+                    • auth_handler.php file not found<br>
+                    • Database connection issues<br>
+                    • Server not running properly
+                `;
+            }
+        });
+
+        async function checkDatabase() {
+            const resultDiv = document.getElementById('dbResult');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '⏳ Checking database...';
+            
+            try {
+                const response = await fetch('auth_handler.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'action=check_login'
+                });
+                
+                const data = await response.json();
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = '✅ Database connection is working!';
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `❌ Database connection failed: ${error.message}`;
+            }
+        }
+
+        async function testConnection() {
+            const resultDiv = document.getElementById('dbResult');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '⏳ Testing connection...';
+            
+            try {
+                const response = await fetch('auth_handler.php');
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = '✅ auth_handler.php file is accessible!';
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = '❌ auth_handler.php file not found or has errors';
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `❌ Connection failed: ${error.message}`;
+            }
+        }
+
+        // Auto-generate unique email
+        document.getElementById('email').value = 'sumita_' + Date.now() + '@gmail.com';
+    </script>
+</body>
+</html>

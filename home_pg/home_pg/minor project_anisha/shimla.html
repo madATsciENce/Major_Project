@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shimla Mountain Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('ridge2.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #hotels, #top-sites, #services, #transport, #contact {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Shimla Mountain Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Discover the Beauty of Shimla Mountains</h2>
+            <p>Experience the majestic landscapes and vibrant culture of Shimla.</p>
+            <button>Book Your Stay</button>
+        </div>
+    </section>
+
+   <section id="hotels">
+    <h2>Top Hotels & Homestays in Shimla</h2>
+    <div class="hotel-cards">
+        <!-- Hotel 1 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Shimla+Hotel+1" alt="Hotel 1">
+            <h3>Sunrise Hotel</h3>
+            <p>Location: Mall Road</p>
+            <p>Rent: ₹4000/night</p>
+        </div>
+        <!-- Hotel 2 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Shimla+Hotel+2" alt="Hotel 2">
+            <h3>Himalayan Retreat</h3>
+            <p>Location: Kufri</p>
+            <p>Rent: ₹3500/night</p>
+        </div>
+        <!-- Hotel 3 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Shimla+Hotel+3" alt="Hotel 3">
+            <h3>Oakwood Resort</h3>
+            <p>Location: Jakhoo Hill</p>
+            <p>Rent: ₹3800/night</p>
+        </div>
+        <!-- Hotel 4 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Shimla+Hotel+4" alt="Hotel 4">
+            <h3>Hilltop Homestay</h3>
+            <p>Location: Near Ridge</p>
+            <p>Rent: ₹3000/night</p>
+        </div>
+        <!-- Hotel 5 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Shimla+Hotel+5" alt="Hotel 5">
+            <h3>Grand View Hotel</h3>
+            <p>Location: Chail Road</p>
+            <p>Rent: ₹4500/night</p>
+        </div>
+        <!-- Hotel 6 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Shimla+Hotel+6" alt="Hotel 6">
+            <h3>Forest Lodge</h3>
+            <p>Location: Mashobra</p>
+            <p>Rent: ₹2800/night</p>
+        </div>
+        <!-- Hotel 7 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Shimla+Hotel+7" alt="Hotel 7">
+            <h3>Silver Oak Hotel</h3>
+            <p>Location: Lakkar Bazaar</p>
+            <p>Rent: ₹3700/night</p>
+        </div>
+        <!-- Hotel 8 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Shimla+Hotel+8" alt="Hotel 8">
+            <h3>Snow View Homestay</h3>
+            <p>Location: Near Mall Road</p>
+            <p>Rent: ₹3200/night</p>
+        </div>
+        <!-- Hotel 9 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Shimla+Hotel+9" alt="Hotel 9">
+            <h3>Pine Crest Resort</h3>
+            <p>Location: Mashobra</p>
+            <p>Rent: ₹3600/night</p>
+        </div>
+        <!-- Hotel 10 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Shimla+Hotel+10" alt="Hotel 10">
+            <h3>Cloud Nine Hotel</h3>
+            <p>Location: Summer Hill</p>
+            <p>Rent: ₹3900/night</p>
+        </div>
+    </div>
+</section>
+
+    <section id="top-sites">
+    <h2>Top Sites to See in Shimla</h2>
+    <div class="site-cards">
+        <!-- Site 1 -->
+        <div class="site-card">
+            <img src="https://via.placeholder.com/300x150?text=Jakhoo+Temple" alt="Jakhoo Temple">
+            <h3>Jakhoo Temple</h3>
+            <p>An ancient temple dedicated to Lord Hanuman, offering panoramic views.</p>
+        </div>
+        <!-- Site 2 -->
+        <div class="site-card">
+            <img src="https://via.placeholder.com/300x150?text=Shimla+Mall+Road" alt="Shimla Mall Road">
+            <h3>Mall Road</h3>
+            <p>The main shopping street lined with restaurants and shops.</p>
+        </div>
+        <!-- Site 3 -->
+        <div class="site-card">
+            <img src="https://via.placeholder.com/300x150?text=The+Ridge" alt="The Ridge">
+            <h3>The Ridge</h3>
+            <p>A spacious open area in Shimla with stunning views and events.</p>
+        </div>
+        <!-- Site 4 -->
+        <div class="site-card">
+            <img src="https://via.placeholder.com/300x150?text=Christ+Church" alt="Christ Church">
+            <h3>Christ Church</h3>
+            <p>A beautiful Gothic-style church, one of the oldest in North India.</p>
+        </div>
+        <!-- Site 5 -->
+        <div class="site-card">
+            <img src="https://via.placeholder.com/300x150?text=Viceregal+Lodge" alt="Viceregal Lodge">
+            <h3>Viceregal Lodge</h3>
+            <p>A historical building showcasing colonial architecture.</p>
+        </div>
+        <!-- Site 6 -->
+        <div class="site-card">
+            <img src="https://via.placeholder.com/300x150?text=Kufri" alt="Kufri">
+            <h3>Kufri</h3>
+            <p>A popular hill station for skiing and adventure activities.</p>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <h2>Services Offered</h2>
+    <ul>
+        <li>Guided Tours</li>
+        <li>Adventure Sports</li>
+        <li>Cultural Experiences</li>
+        <li>Transportation Services</li>
+        <li>Personalized Itineraries</li>
+    </ul>
+</section>
+
+<section id="transport">
+    <h2>Transport Options</h2>
+    <p>Easy access to Shimla via:</p>
+    <ul>
+        <li>Train Services from major cities</li>
+        <li>Bus Services from Delhi and Chandigarh</li>
+        <li>Car Rentals and Taxi Services</li>
+    </ul>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or would like to book a stay, please reach out!</p>
+    <form>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" required></textarea><br>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<div id="map"></div>
+
+<footer>
+    <p>&copy; 2024 Shimla Mountain Experience. All rights reserved.</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    // Initialize the map
+    var map = L.map('map').setView([31.1048, 77.1734], 13);
+    
+    // Load and display tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Add a marker to the map
+    L.marker([31.1048, 77.1734]).addTo(map)
+        .bindPopup('Shimla, the Queen of Hills!')
+        .openPopup();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiti Valley Camping Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('images/Spiti/stones-at-chandrataal-lake-1.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+        }
+        
+        .hero p {
+            font-size: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #camping-areas, #transport, #services, #top-sites {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .camping-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #transport ul, #services ul, #top-sites ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        #map {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        #reviews, #contact {
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+            margin: 20px 0;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background-color: white;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input, textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+      .transport-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.transport-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.transport-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.transport-icon {
+    width: 80px; /* Adjust icon size */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 36px;
+    color: #2c3e50;
+}    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Spiti Valley Camping Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#camping-areas">Camping Areas</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Unforgettable Camping in Spiti Valley</h2>
+            <p>Experience the serene landscapes and ancient culture of Spiti Valley.</p>
+            <button>Book Your Camping Experience</button>
+        </div>
+    </section>
+
+    <section id="camping-areas">
+        <h2>Camping Areas</h2>
+        <div class="camping-cards">
+            <div class="card">
+                <img src="images\Spiti\Kaza Camp.webp" alt="Camping Site 1">
+                <h3>Site 1: Kaza Camp</h3>
+                <p>Location: Kaza</p>
+                <p>Rent: ₹2500/night</p>
+                <p>A perfect base for exploring Spiti.</p>
+            </div>
+            <div class="card">
+                <img src="images\Spiti\Chandratal Camp.jpg" alt="Camping Site 2">
+                <h3>Site 2: Chandratal Camp</h3>
+                <p>Location: Chandratal</p>
+                <p>Rent: ₹3000/night</p>
+                <p>Stunning views of the lake.</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top Sites to Visit in Spiti Valley</h2>
+        <div class="site-cards">
+            <div class="site-card">
+                <img src="images\Spiti\Tabo Monastery.jpg" alt="Tabo Monastery">
+                <h3>1. Tabo Monastery</h3>
+                <p>Ancient monastery known for its murals and architecture.</p>
+            </div>
+            <div class="site-card">
+                <img src="images\Spiti/Chandratal Lake.webp" alt="Chandratal Lake">
+                <h3>2. Chandratal Lake</h3>
+                <p>Beautiful high-altitude lake ideal for camping.</p>
+            </div>
+            
+        </div>
+    </section>
+
+
+
+    <section id="transport">
+    <h2>Transport Options</h2>
+    <div class="transport-cards">
+        <div class="transport-card">
+            <img src="images\Icons\bus.png" class="transport-icon" alt="Bus">
+            <h3>Bus Services</h3>
+            <p>Regular bus services operate from major cities like Manali and Shimla to Spiti Valley.</p>
+            <ul>
+                <li><strong>Cost:</strong> ₹800 - ₹1500</li>
+                <li><strong>Travel Time:</strong> Approximately 12-16 hours</li>
+                <li><strong>Tips:</strong> Book in advance during peak season for guaranteed seats.</li>
+            </ul>
+        </div>
+        <div class="transport-card">
+            <img src="images\Icons\taxi.png" class="transport-icon" alt="Taxi">
+            <h3>Taxi Rentals</h3>
+            <p>Convenient taxi rentals are available for personalized travel throughout the valley.</p>
+            <ul>
+                <li><strong>Cost:</strong> ₹3000 - ₹6000 per day</li>
+                <li><strong>Travel Time:</strong> Varies based on itinerary</li>
+                <li><strong>Tips:</strong> Negotiate the price and confirm inclusions before booking.</li>
+            </ul>
+        </div>
+        <div class="transport-card">
+            <img src="images\Icons\bike.png" class="transport-icon" alt="Bike">
+            <h3>Bike Rentals</h3>
+            <p>Experience the thrill of biking through the stunning landscapes of Spiti Valley.</p>
+            <ul>
+                <li><strong>Cost:</strong> ₹1000 - ₹2000 per day</li>
+                <li><strong>Travel Time:</strong> Flexible based on your pace</li>
+                <li><strong>Tips:</strong> Ensure you have a valid license and necessary gear.</li>
+            </ul>
+        </div>
+        <div class="transport-card">
+            <img src="images\Icons\jeep.png" class="transport-icon" alt="Shared Jeep">
+            <h3>Shared Jeeps</h3>
+            <p>Shared jeep services are available for budget-friendly travel between popular sites.</p>
+            <ul>
+                <li><strong>Cost:</strong> ₹500 - ₹800 per person</li>
+                <li><strong>Travel Time:</strong> Varies based on routes</li>
+                <li><strong>Tips:</strong> Be prepared for a more social experience, as you'll share the ride with others.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+
+    <section id="services">
+    <h2>Services Offered</h2>
+    <ul>
+        <li>Guided tours for hiking and exploration.</li>
+        <li>Local cuisine experiences at camping sites.</li>
+        <li>Photography sessions at scenic spots.</li>
+        <li>Equipment rentals for camping, including tents, sleeping bags, and cooking gear.</li>
+        <li>Adventure sports like river rafting and trekking.</li>
+        <li>Wildlife and bird watching excursions with knowledgeable guides.</li>
+        <li>Yoga and meditation sessions amidst serene landscapes.</li>
+        <li>Transport services to and from popular sites.</li>
+        <li>Customized camping packages for families, groups, and solo travelers.</li>
+        <li>Emergency medical services and first-aid kits available at campsites.</li>
+        <li>Firewood and cooking services for a cozy camping experience.</li>
+        <li>Photography workshops for capturing the stunning landscapes of Spiti.</li>
+        <li>Bonfire nights with storytelling sessions under the stars.</li>
+        <li>Transport of your luggage during treks for a hassle-free experience.</li>
+        <li>Post-trip support and recommendations for your next adventure.</li>
+    </ul>
+</section>
+    <section id="map">
+        <h2>Map of Spiti Valley</h2>
+        <div id="map"></div>
+    </section>
+
+   <section id="reviews">
+    <h2>User Reviews</h2>
+    <div class="review-card">
+        <p><strong>"An unforgettable experience in the serene landscapes of Spiti!"</strong></p>
+        <p><em>- Ravi Kumar, New Delhi</em></p>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>The camping site near Kaza was stunning! Waking up to the mountains and fresh air was a dream come true. The staff was friendly and the food was delicious. Highly recommend this place for anyone looking to connect with nature!</p>
+    </div>
+    <div class="review-card">
+        <p><strong>"The camping facilities were top-notch and the views are breathtaking!"</strong></p>
+        <p><em>- Priya Sharma, Mumbai</em></p>
+        <p>⭐⭐⭐⭐</p>
+        <p>Our stay at Chandratal Camp was simply amazing. The tents were spacious and well-equipped. The location next to the lake was perfect for early morning photography. The campfire at night was the highlight of our trip!</p>
+    </div>
+    <div class="review-card">
+        <p><strong>"A perfect getaway for nature lovers!"</strong></p>
+        <p><em>- Anil Mehta, Bangalore</em></p>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>If you are looking for peace and tranquility, look no further. The Tabo Camp provided everything we needed. The guided tours to nearby monasteries were insightful, and we got to experience the local culture first-hand.</p>
+    </div>
+    <div class="review-card">
+        <p><strong>"The best camping experience I’ve ever had!"</strong></p>
+        <p><em>- Sunita Rani, Chandigarh</em></p>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>Staying at Dhankar Camp was an absolute delight! The views from the camp are simply stunning, and the staff went above and beyond to make our stay comfortable. I will definitely be back!</p>
+    </div>
+    <div class="review-card">
+        <p><strong>"A wonderful adventure with amazing people!"</strong></p>
+        <p><em>- Arun Singh, Pune</em></p>
+        <p>⭐⭐⭐⭐</p>
+        <p>Camping in Kibber was a fantastic experience! The community vibe was great, and we met many fellow travelers. The stargazing at night was mesmerizing. A must-visit for adventurers!</p>
+    </div>
+    <div class="review-card">
+        <p><strong>"Highly recommend this camping experience!"</strong></p>
+        <p><em>- Neha Gupta, Kolkata</em></p>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>The Langza Camp was very well organized. The team was very friendly and helpful. I particularly loved the local dishes they served, and the ambiance was perfect for relaxation.</p>
+    </div>
+    <div class="review-card">
+        <p><strong>"A beautiful escape from the city!"</strong></p>
+        <p><em>- Rajesh Khanna, Jaipur</em></p>
+        <p>⭐⭐⭐⭐</p>
+        <p>We had a wonderful time at Sumdo Camp. The location was peaceful and the facilities were great. We enjoyed hiking in the nearby hills and taking in the breathtaking scenery.</p>
+    </div>
+    <div class="review-card">
+        <p><strong>"Best way to experience the Himalayas!"</strong></p>
+        <p><em>- Meera Joshi, Dehradun</em></p>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>Camping at Hikkim was an unforgettable experience! The views were out of this world and the staff were so accommodating. The highest post office was just a short walk away. Highly recommend!</p>
+    </div>
+</section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Spiti Valley Camping Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([32.4406, 78.2009], 8); // Coordinates for Spiti Valley
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Add a marker for Kaza
+        L.marker([32.8820, 78.0892]).addTo(map)
+            .bindPopup('Kaza')
+            .openPopup();
+
+        // Add a marker for Chandratal
+        L.marker([32.3528, 77.2645]).addTo(map)
+            .bindPopup('Chandratal Lake');
+
+        // Add a marker for Tabo
+        L.marker([32.4046, 78.3671]).addTo(map)
+            .bindPopup('Tabo Monastery');
+
+        // Add a marker for Dhankar
+        L.marker([32.4661, 78.2630]).addTo(map)
+            .bindPopup('Dhankar Monastery');
+    </script>
+</body>
+</html>
+>

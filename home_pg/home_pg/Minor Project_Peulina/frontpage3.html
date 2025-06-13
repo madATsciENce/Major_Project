@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Wildlife Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+	    position:relative;
+	    min-height:100vh;
+        }
+	body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("Jim17.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            filter: blur(5px); /* Apply blur effect */
+            z-index: -1; /* Place it behind the content */
+        }
+	
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        .category {
+            text-align: center;
+            margin: 50px 0;
+            padding: 50px 0;
+            color: white;
+        }
+        .category h2 {
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        .places-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .place {
+            position: relative;
+            width: 250px;
+            transition: transform 0.3s ease;
+        }
+        .place img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .place:hover {
+            transform: scale(1.1);
+        }
+        .place a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .place a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1> Explore Wildlife </h1>
+
+    <!-- North Section -->
+    <div class="category">
+        <h2>North</h2>
+        <div class="places-container">
+            <div class="place">
+                <a href="Jim Corbett National Park.html">
+                    <img src="corbett.jpg" alt="North Place 1">
+                    <p>Jim Corbett National Park</p>
+                </a>
+            </div>
+            <div class="place">
+                <a href="Ranthambore National Park.html">
+                    <img src="ranthambore.jpg" alt="North Place 2">
+                    <p>Ranthambore National Park</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+                    <!-- South Section -->
+    <div class="category">
+        <h2>South</h2>
+        <div class="places-container">
+            <div class="place">
+                <a href="Bandipur National Park.html">
+                    <img src="bandipur pic.webp" alt="South Place 1">
+                    <p> Bandipur National Park </p>
+                </a>
+            </div>
+            <div class="place">
+                <a href="Nagarhole National Park.html">
+                    <img src="nagarhole pic.jpg" alt="South Place 2">
+                    <p>Nagarhole National Park</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+        
+    <!-- East Section -->
+    <div class="category">
+        <h2>East</h2>
+        <div class="places-container">
+            <div class="place">
+                <a href="Kaziranga National Park.html">
+                    <img src="Kaziranga pic.avif" alt="East Place 1">
+                    <p>Kaziranga National Park</p>
+                </a>
+            </div>
+            <div class="place">
+                <a href="Sunderban National Park.html">
+                    <img src="sundarban pic.jpg" alt="East Place 2">
+                    <p>Sunderban National Park</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- West Section -->
+    <div class="category">
+        <h2>West</h2>
+        <div class="places-container">
+            <div class="place">
+                <a href="Taboda National Park.html">
+                    <img src="taboda pic.jpg" alt="West Place 1">
+                    <p>Taboda National Park</p>
+                </a>
+            </div>
+            <div class="place">
+                <a href="Gir National Park.html">
+                    <img src="gir pic.jpg" alt="West Place 2">
+                    <p>Gir National Park</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+.container1 {
+    background-image: url('bg4.png'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    background-attachment:fixed;
+    height: 100vh;
+    width:100%;
+    filter: blur(5px); /* Adjust the blur value as needed */
+    opacity: 0.7; /* Adjust the opacity for the fade effect */
+}

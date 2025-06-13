@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filter Pop-up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="open-filter">Open Filters</button>
+
+    <div id="filter-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Filters</h2>
+            <div class="filter-section">
+                <h3>Type of place</h3>
+                <button>Any type</button>
+                <button>Room</button>
+                <button>Entire home</button>
+            </div>
+
+            <div class="filter-section">
+                <h3>Price range</h3>
+                <p>Nightly prices before fees and taxes</p>
+                <input type="range" min="840" max="38000" value="840" id="price-slider">
+                <div class="slider-values">
+                    <span id="min-value">₹1000</span>
+                    <span id="max-value">₹38000+</span>
+                </div>
+            </div>
+
+            <button id="apply-filters">Show 1,000+ places</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

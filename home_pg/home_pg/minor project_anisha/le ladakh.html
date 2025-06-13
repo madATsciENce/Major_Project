@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leh Ladakh Mountain Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('le1.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #hotels, #top-sites, #services, #transport, #reviews, #contact {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Leh Ladakh Mountain Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Experience the Wonders of Leh Ladakh</h2>
+            <p>Explore breathtaking landscapes and rich culture.</p>
+            <button><a href="leh tour pckg.html">Book Your Stay</a></button>
+        </div>
+    </section>
+
+    <section id="hotels">
+        <h2>Top Hotels & Homestays in Ladakh</h2>
+        <div class="hotel-cards">
+            <!-- Hotel 1 -->
+            <a href="booking.php?hotel=Leh%20Palace%20Hotel" class="card" style="text-decoration:none; color:inherit;">
+                <img src="https://tse2.mm.bing.net/th?id=OIP.094U0JAVjdqU5yqnPVoAnwHaE8&rs=1&pid=ImgDetMain" alt="Hotel 1">
+                <h3>Leh Palace Hotel</h3>
+                <p>Location: Leh</p>
+                <p>Rent: ₹4500/night</p>
+            </a>
+            <!-- Hotel 2 -->
+            <a href="booking.php?hotel=Snowland%20Hotel" class="card" style="text-decoration:none; color:inherit;">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/ec/e3/a3/hotel-snowland.jpg?w=700&h=-1&s=1" alt="Hotel 2">
+                <h3>Snowland Hotel</h3>
+                <p>Location: Leh</p>
+                <p>Rent: ₹4000/night</p>
+            </a>
+            <!-- Hotel 8 -->
+            <a href="booking.php?hotel=Lamayuru%20Hotel" class="card" style="text-decoration:none; color:inherit;">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/de/57/b2/vue-imprenable-du-balcon.jpg?w=1400&h=-1&s=1" alt="Hotel 8">
+                <h3>Lamayuru Hotel</h3>
+                <p>Location: Lamayuru</p>
+                <p>Rent: ₹3200/night</p>
+            </a>
+            <!-- Hotel 9 -->
+            <a href="booking.php?hotel=Stok%20Palace%20Heritage%20Hotel" class="card" style="text-decoration:none; color:inherit;">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/5f/75/48/stok-palace-heritage.jpg?w=700&h=-1&s=1" alt="Hotel 9">
+                <h3>Stok Palace Heritage Hotel</h3>
+                <p>Location: Stok</p>
+                <p>Rent: ₹7000/night</p>
+            </a>
+            <!-- Hotel 10 -->
+            <a href="booking.php?hotel=Zanskar%20Valley%20Hotel" class="card" style="text-decoration:none; color:inherit;">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/e3/9a/3a/getlstd-property-photo.jpg?w=1200&h=-1&s=1" alt="Hotel 10">
+                <h3>Zanskar Valley Hotel</h3>
+                <p>Location: Zanskar</p>
+                <p>Rent: ₹4400/night</p>
+            </a>
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top Sites to See in Ladakh</h2>
+        <div class="site-cards">
+            <!-- Site 1 -->
+            <div class="site-card">
+                <img src="https://adventourist.in/travel-blog/wp-content/uploads/2021/01/leh-palace-ladakh.jpeg" alt="Leh Palace">
+                <h3>Leh Palace</h3>
+                <p>A historical palace with stunning views.</p>
+            </div>
+            <!-- Site 2 -->
+            <div class="site-card">
+                <img src="https://static.toiimg.com/photo/msid-79549873,width-96,height-65.cms" alt="Pangong Lake">
+                <h3>Pangong Lake</h3>
+                <p>Famous for its breathtaking beauty.</p>
+            </div>
+            <!-- Site 3 -->
+            <div class="site-card">
+                <img src="https://th.bing.com/th/id/OIP.T472qYQvDDJ_KSs8CZ4opgHaEK?rs=1&pid=ImgDetMain" alt="Khardung La">
+                <h3>Khardung La</h3>
+                <p>The highest motorable road in the world.</p>
+            </div>
+            <!-- Site 4 -->
+            <div class="site-card">
+                <img src="https://th.bing.com/th/id/OIP.8D9A8kuyeGPnAsAYnRJ_jgHaE7?rs=1&pid=ImgDetMain" alt="Nubra Valley">
+                <h3>Nubra Valley</h3>
+                <p>A beautiful valley known for its unique landscapes.</p>
+            </div>
+            <!-- Site 5 -->
+            <div class="site-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Shanti_Stupa_(_Winters).jpg" alt="Shanti Stupa">
+                <h3>Shanti Stupa</h3>
+                <p>A peaceful stupa with panoramic views of Leh.</p>
+            </div>
+            <!-- Site 6 -->
+            <div class="site-card">
+                <img src="https://mybeautifuladventures.com/wp-content/uploads/2019/12/Flowing-Zanskar-River-1536x1024.jpg" alt="Zanskar River">
+                <h3>Zanskar River</h3>
+                <p>A stunning river known for its beauty and adventure activities.</p>
+            </div>
+            <!-- Site 7 -->
+            <div class="site-card">
+                <img src="https://www.ladakh-tourism.net/wp-content/uploads/2021/11/thiksey-monastery-5.jpeg" alt="Thiksey Monastery">
+                <h3>Thiksey Monastery</h3>
+                <p>A beautiful monastery with impressive architecture.</p>
+            </div>
+            <!-- Site 8 -->
+            <div class="site-card">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.fgmd4XhpLF0hUm8z0liw_QHaD5&rs=1&pid=ImgDetMain" alt="Diskit Monastery">
+                <h3>Diskit Monastery</h3>
+                <p>The oldest and largest monastery in Nubra Valley.</p>
+            </div>
+            <!-- Site 9 -->
+            <div class="site-card">
+                <img src="https://th.bing.com/th/id/R.07c8c2b004d33df451903eb1a28b7866?rik=JuaGi%2b1fQSbF5Q&riu=http%3a%2f%2f3.bp.blogspot.com%2f-K4a_nHMym24%2fU0Q_LFrS7aI%2fAAAAAAAAAg4%2fPMvngF5NmE4%2fs1600%2fmagnetic-hill-ladakh.jpg&ehk=S7paiMObpN65EPf8kB9AqPU2X3Ir1deDczGeY6c6zng%3d&risl=&pid=ImgRaw&r=0" alt="Magnetic Hill">
+                <h3>Magnetic Hill</h3>
+                <p>A gravity hill that creates an optical illusion.</p>
+            </div>
+            <!-- Site 10 -->
+            <div class="site-card">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/ad/eb/cb/this-image-is-valley.jpg?w=1200&h=-1&s=1" alt="Valley of Flowers">
+                <h3>Valley of Flowers</h3>
+                <p>A UNESCO World Heritage site known for its natural beauty.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Guided Tours</li>
+            <li>Trekking Services</li>
+            <li>Adventure Sports</li>
+            <li>Cultural Experiences</li>
+            <li>Transport Services</li>
+            <li>Emergency Assistance</li>
+        </ul>
+    </section>
+
+    <section id="transport">
+        <h2>Transport Options</h2>
+        <ul>
+            <li>Local Buses: Regular buses from Leh to major attractions.</li>
+            <li>Taxi Services: Easily available for hire.</li>
+            <li>Bike Rentals: Explore at your own pace.</li>
+            <li>Helicopter Services: For quick access to remote areas.</li>
+        </ul>
+    </section>
+
+    <section id="reviews">
+        <h2>Reviews & Ratings</h2>
+        <div class="review">
+            <h3>John Doe</h3>
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Absolutely stunning! The landscapes were breathtaking."</p>
+        </div>
+        <div class="review">
+            <h3>Jane Smith</h3>
+            <p>⭐⭐⭐⭐</p>
+            <p>"A memorable experience with fantastic views."</p>
+        </div>
+        <div class="review">
+            <h3>Mike Johnson</h3>
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"The best adventure of my life! Highly recommended."</p>
+        </div>
+        <div class="review">
+            <h3>Emily Davis</h3>
+            <p>⭐⭐⭐</p>
+            <p>"Beautiful place but can be crowded in peak season."</p>
+        </div>
+    </section>
+
+    <section id="map">
+        <h2>Location Map</h2>
+        <div id="map"></div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to reach out:</p>
+        <p>Email: contact@ladakhmountainexperience.com</p>
+        <p>Phone: +91 987 654 3210</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Le Ladakh Mountain Experience. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([34.1528, 77.5773], 8); // Coordinates for Leh, Ladakh
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+        L.marker([34.1528, 77.5773]).addTo(map)
+            .bindPopup('Leh, Ladakh')
+            .openPopup();
+    </script>
+
+</body>
+</html>

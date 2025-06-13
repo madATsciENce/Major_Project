@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camping Travel Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #0056d6;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .container {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .places {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            flex: 1 1 calc(33% - 1rem);
+            min-width: 200px;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-content h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .card-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .explore-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.7rem 1.5rem;
+            color: white;
+            background: linear-gradient(45deg, #ff6f61, #ff9052);
+            border: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .explore-btn:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #333;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                flex: 1 1 calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Explore Various Camping Places</h1>
+    </header>
+
+    <div class="container">
+        <section class="section">
+            <h2>Camping Destinations</h2>
+            <div class="places">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150" alt="Rishikesh">
+                    <div class="card-content">
+                        <h3>Rishikesh</h3>
+                        <p>Known as the Yoga Capital, Rishikesh offers scenic camping by the Ganges.</p><br><br><br>
+                        <a href="#" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150" alt="Chandratal">
+                    <div class="card-content">
+                        <h3>Chandratal</h3>
+                        <p>Enjoy breathtaking views at this high-altitude lake in Himachal Pradesh.</p>
+                        <a href="#" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150" alt="Mussoorie">
+                    <div class="card-content">
+                        <h3>Mussoorie</h3>
+                        <p>Experience serene camping amidst the lush hills of the Queen of the Hills.</p>
+                        <a href="#" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150" alt="Yercaud">
+                    <div class="card-content">
+                        <h3>Yercaud</h3>
+                        <p>A quiet hill station in Tamil Nadu, perfect for camping and nature trails.</p><br><br><br>
+                        <a href="#" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150" alt="Jaisalmer">
+                    <div class="card-content">
+                        <h3>Jaisalmer</h3>
+                        <p>Camp under the stars in the vast Thar Desert near the Golden City.</p>
+                        <a href="#" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150" alt="Spiti">
+                    <div class="card-content">
+                        <h3>Spiti</h3>
+                        <p>Discover the rugged beauty of Spiti Valley, perfect for adventure lovers.</p>
+                        <a href="#" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150" alt="Sarchu">
+                    <div class="card-content">
+                        <h3>Sarchu</h3>
+                        <p>A popular camping stop on the Leh-Manali highway with stunning landscapes.</p><br><br><br>
+                        <a href="#" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150" alt="Vagamon">
+                    <div class="card-content">
+                        <h3>Vagamon</h3>
+                        <p>Escape to the lush green meadows and serene environment of Vagamon.</p>
+                        <a href="#" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150" alt="Wayanad">
+                    <div class="card-content">
+                        <h3>Wayanad</h3>
+                        <p>Explore dense forests, waterfalls, and camping spots in this Kerala gem.</p>
+                        <a href="#" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150" alt="Yehliri">
+                    <div class="card-content">
+                        <h3>Yehliri</h3>
+                        <p>A hidden gem offering unique landscapes and peaceful camping experiences.</p><br><br><br>
+                        <a href="#" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Camping Travel Website. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

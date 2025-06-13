@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jim Corbett National Park Stay Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2023/06/11170918/DSC_0774-1-1.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #hotels, #transport, #services, #map, #reviews {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #transport ul, #services ul, #reviews ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-icon {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Jim Corbett National Park Stay Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Discover the Wilderness of Jim Corbett National Park</h2>
+            <p>Explore Hotels & Stays and experience nature like never before.</p>
+            <button> <a href="Jim Corbett tour packages.html">Explore Hotels & Stays </a></button>
+        </div>
+    </section>
+
+    <section id="hotels">
+    <h2>Top Hotels and Homestays near Jim Corbett National Park</h2>
+    <div class="hotel-cards">
+        <div class="card">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/be/17/ef/the-old-frh.jpg?w=700&h=-1&s=1" alt="Hotel 1">
+            <h3>Hotel 1: Corbett Jungle Resort</h3>
+            <p>Location: Near Dhikala Zone</p>
+            <p>Rent: ₹5000/night</p>
+            <p>A luxury resort surrounded by the forest.</p>
+        </div>
+        <div class="card">
+            <img src="https://q-xx.bstatic.com/xdata/images/hotel/max500/529646230.jpg?k=bdec9386ab47993f37c2b09d5e75d6376feeab2ae28de0b34b3333d99a199745&o=" alt="Hotel 2">
+            <h3>Hotel 2: Riverside Retreat</h3>
+            <p>Location: Ramganga River</p>
+            <p>Rent: ₹4000/night</p>
+            <p>Relaxing riverside view with premium amenities.</p>
+        </div>
+        <div class="card">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/66/4d/36/bijrani-rest-house.jpg?w=1100&h=-1&s=1" alt="Hotel 3">
+            <h3>Hotel 3: Forest View Homestay</h3>
+            <p>Location: Bijrani Zone</p>
+            <p>Rent: ₹3500/night</p>
+            <p>Cozy homestay with jungle-facing rooms.</p>
+        </div>
+        <div class="card">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/c6/49/dc/the-holy-dip-pool.jpg?w=700&h=-1&s=1" alt="Hotel 4">
+            <h3>Hotel 4: Corbett Adventure Lodge</h3>
+            <p>Location: Jhirna Zone</p>
+            <p>Rent: ₹4500/night</p>
+            <p>Perfect for adventure seekers with safari access.</p>
+        </div>
+        <div class="card">
+            <img src="https://r1imghtlak.mmtcdn.com/7f126234e95e11e8a8b10242ac110004.jpg" alt="Hotel 5">
+            <h3>Hotel 5: Nature's Nest Homestay</h3>
+            <p>Location: Dhela Zone</p>
+            <p>Rent: ₹3000/night</p>
+            <p>Eco-friendly homestay near wildlife.</p>
+        </div>
+        <div class="card">
+            <img src="https://r1imghtlak.mmtcdn.com/83e9b7b2644111ea8f370242ac11000e.jpeg" alt="Hotel 6">
+            <h3>Hotel 6: Wilderness Retreat</h3>
+            <p>Location: Dhikuli</p>
+            <p>Rent: ₹4200/night</p>
+            <p>Luxury lodge with excellent wildlife tours.</p>
+        </div>
+        <div class="card">
+            <img src="https://corbettresort.in/echronpanel/images/img-lib/large/17174011000.jpg" alt="Hotel 7">
+            <h3>Hotel 7: Tiger's Den Resort</h3>
+            <p>Location: Near Bijrani</p>
+            <p>Rent: ₹4800/night</p>
+            <p>Resort with exclusive tiger safari access.</p>
+        </div>
+        <div class="card">
+            <img src="https://r1imghtlak.mmtcdn.com/9b3c8045-98a1-4bfb-9d56-b9605bd833c5.jpg" alt="Hotel 8">
+            <h3>Hotel 8: The Himalayan Homestay</h3>
+            <p>Location: Nainital Road</p>
+            <p>Rent: ₹3500/night</p>
+            <p>A comfortable homestay with a homely atmosphere.</p>
+        </div>
+        </section>
+
+    <section id="services">
+        <h2>Services Offered</h2>
+        <ul>
+            <li>24/7 Wildlife Safari Booking</li>
+            <li>Local Guided Nature Walks</li>
+            <li>Bird Watching Tours</li>
+            <li>Bonfire & Camping Experiences</li>
+            <li>Jeep and Elephant Safaris</li>
+            <li>Special Yoga and Meditation Retreats</li>
+        </ul>
+    </section>
+
+    <section id="transport">
+        <h2>Transport Options</h2>
+        <ul>
+            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT33z1mmmg__TbT8_CJgiNUlo_TfqXm7Smugg&s" height="50" width="50" alt="Train icon"> Nearest Railway Station: Ramnagar (12 km)</li>
+
+            <li><img src="https://png.pngtree.com/template/20190214/ourmid/pngtree-circle-travel-plane-logo-template-in-blacn-and-white-image_55579.jpg"  height="50" width="50" alt="Airport Icon"> Nearest Airport: Pantnagar (80 km)</li>
+
+            <li><img src="https://i.pinimg.com/736x/7e/f2/4d/7ef24db3928b30fd17586d85d5c1e912.jpg" height="50" width="50" alt="Bus Icon"> Local Bus Services: Regular buses from Nainital, Haldwani</li>
+
+
+            <li><img src="https://static.vecteezy.com/system/resources/previews/038/821/574/non_2x/flat-taxi-logo-isolated-on-white-background-car-face-icon-silhouette-auto-logo-template-taxi-service-brand-design-vector.jpg" height="50" width="50" alt="Taxi Icon"> Taxi Services: Available 24/7 in Ramnagar</li>
+        </ul>
+    </section>
+
+    <section id="map">
+        <h2>Map of Jim Corbett National Park</h2>
+        <div id="map"></div>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script>
+            var map = L.map('map').setView([29.530, 78.774], 12);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+            }).addTo(map);
+
+            L.marker([29.530, 78.774]).addTo(map)
+                .bindPopup('Jim Corbett National Park')
+                .openPopup();
+        </script>
+    </section>
+
+    <section id="reviews">
+        <h2>Visitor Reviews</h2>
+        <div class="review-card">
+            <h3>John Doe</h3>
+            <p>"Amazing wildlife experience! The resort was fantastic, and the safaris were thrilling."</p>
+        </div>
+        <div class="review-card">
+            <h3>Jane Smith</h3>
+            <p>"Stayed at the Riverside Retreat. The view was breathtaking, and the service was excellent."</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" required></textarea><br><br>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Jim Corbett National Park Stay Experience</p>
+    </footer>
+
+</body>
+</html>

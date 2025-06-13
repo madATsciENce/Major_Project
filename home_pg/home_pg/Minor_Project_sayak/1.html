@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beach Travel Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        .category {
+            text-align: center;
+            margin: 50px 0;
+            padding: 50px 0;
+            color: white;
+        }
+        .category h2 {
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        .places-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .place {
+            position: relative;
+            width: 250px;
+            transition: transform 0.3s ease;
+        }
+        .place img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .place:hover {
+            transform: scale(1.1);
+        }
+        .place a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .place a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Explore Beach Places</h1>
+
+    <!-- Northeast Section -->
+    <div class="category">
+        <h2>Northeast</h2>
+        <div class="places-container">
+            <div class="place">
+                <a href="newdigha.html">
+                    <img src="digha.jpg">
+                    <p>New Digha</p>
+                </a>
+            </div>
+            <div class="place">
+                <a href="https://example.com/northeast-place-2">
+                    <img src="puri.jpg">
+                    <p>Puri</p>
+                </a>
+            </div>
+	     <div class="place">
+                <a href="https://example.com/northeast-place-3">
+                    <img src="mandarmani.jpg">
+                    <p>Mandarmani</p>
+                </a>
+        </div>
+    </div>
+
+    <!-- Add more categories similarly -->
+
+</body>
+</html>
+
+    
+    <!-- South Section -->
+    <div class="category">
+        <h2>South</h2>
+        <div class="places-container">
+            <div class="place">
+                <a href="https://example.com/south-place-1">
+                    <img src="goa.jpg">
+                    <p>Goa</p>
+                </a>
+            </div>
+            <div class="place">
+                <a href="https://example.com/south-place-2">
+                    <img src="marina.jpg">
+                    <p>Marina</p>
+                </a>
+            </div>
+	     <div class="place">
+                <a href="https://example.com/northeast-place-2">
+                    <img src="kovalam.jpg">
+                    <p>Kovalam</p>
+                </a>
+        </div>
+    </div>
+</body>
+</html>

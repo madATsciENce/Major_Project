@@ -1,0 +1,205 @@
+/* Layout Fix CSS - Ensures proper row-wise organization */
+
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Main container structure */
+main {
+    width: 100%;
+    clear: both;
+}
+
+/* Section organization */
+section {
+    width: 100%;
+    clear: both;
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/* Carousel section */
+.carousel-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Special offers section */
+.special-offers-section {
+    width: 100%;
+    clear: both;
+    position: relative;
+    z-index: 2;
+    margin: 3rem 0 !important;
+}
+
+/* Why choose us section */
+.why-choose-us {
+    width: 100%;
+    clear: both;
+    position: relative;
+    z-index: 3;
+    margin: 3rem 0 !important;
+    padding: 3rem 0 !important;
+}
+
+/* About section */
+.about-section {
+    width: 100%;
+    clear: both;
+    position: relative;
+    z-index: 4;
+    margin: 3rem 0 !important;
+    padding: 3rem 0 !important;
+}
+
+/* Climate section */
+.climate-section {
+    width: 100%;
+    clear: both;
+    position: relative;
+    z-index: 5;
+    margin: 3rem 0 !important;
+    padding: 3rem 0 !important;
+}
+
+/* Visa section */
+.visa-section {
+    width: 100%;
+    clear: both;
+    position: relative;
+    z-index: 6;
+    margin: 3rem 0 !important;
+    padding: 3rem 0 !important;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    clear: both;
+    position: relative;
+    z-index: 7;
+    margin-top: 3rem !important;
+}
+
+/* Container fixes */
+.container,
+.container1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+/* Prevent floating issues */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-container {
+        margin: 1rem auto;
+    }
+    
+    .special-offers-section,
+    .why-choose-us,
+    .about-section,
+    .climate-section,
+    .visa-section {
+        margin: 2rem 0 !important;
+        padding: 2rem 0 !important;
+    }
+    
+    .container {
+        padding: 0 0.5rem;
+    }
+}
+
+/* Fix any absolute positioning issues */
+.special-offers-section .container {
+    position: relative;
+    z-index: auto;
+}
+
+/* Ensure proper stacking */
+body > * {
+    position: relative;
+}
+
+/* Remove any conflicting margins */
+.special-offers-section + section {
+    margin-top: 0 !important;
+}
+
+/* Grid layout fixes */
+.offers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+    align-items: start;
+    padding: 0 2rem;
+}
+
+/* Ensure cards don't overflow */
+.offer-card {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    justify-self: center;
+}
+
+/* Center grid items */
+@media (max-width: 900px) {
+    .offers-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 800px;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .offers-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        gap: 1.5rem;
+    }
+}
+
+/* Header spacing */
+header + main {
+    margin-top: 0;
+}
+
+/* Section title spacing */
+.section-title {
+    margin-bottom: 2rem;
+}
+
+/* Prevent content jumping */
+.special-offers-section,
+.why-choose-us,
+.about-section,
+.climate-section,
+.visa-section {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}

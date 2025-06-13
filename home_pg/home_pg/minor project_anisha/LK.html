@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lonavala & Khandala Mountain Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('LK1.png');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #hotels, #top-sites, #services, #transport, #reviews, #contact {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Lonavala & Khandala Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Explore the Serenity of Lonavala & Khandala</h2>
+            <p>Experience the lush green landscapes and misty hills of Maharashtra's finest twin hill stations.</p>
+            <button>Plan Your Visit</button>
+        </div>
+    </section>
+
+    <section id="hotels">
+        <h2>Top Hotels & Homestays in Lonavala & Khandala</h2>
+        <div class="hotel-cards">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+Fariyas" alt="Hotel 1">
+                <h3>Fariyas Resort</h3>
+                <p>Location: Lonavala</p>
+                <p>Rent: ₹6000/night</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Homestay+Retreat" alt="Hotel 2">
+                <h3>Green Valley Retreat</h3>
+                <p>Location: Khandala</p>
+                <p>Rent: ₹4500/night</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Della+Resorts" alt="Hotel 3">
+                <h3>Della Resorts</h3>
+                <p>Location: Lonavala</p>
+                <p>Rent: ₹8500/night</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Highland+Resort" alt="Hotel 4">
+                <h3>Highland Resort</h3>
+                <p>Location: Khandala</p>
+                <p>Rent: ₹5000/night</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Cloud+9+Homestay" alt="Hotel 5">
+                <h3>Cloud 9 Homestay</h3>
+                <p>Location: Lonavala</p>
+                <p>Rent: ₹3200/night</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top Sites to See in Lonavala & Khandala</h2>
+        <div class="site-cards">
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Tiger+Point" alt="Tiger Point">
+                <h3>Tiger Point</h3>
+                <p>Offers panoramic views of the valley and waterfalls.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Bhushi+Dam" alt="Bhushi Dam">
+                <h3>Bhushi Dam</h3>
+                <p>A serene spot for picnics and water splashes.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Rajmachi+Fort" alt="Rajmachi Fort">
+                <h3>Rajmachi Fort</h3>
+                <p>An ancient fort with trekking opportunities.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Kune+Falls" alt="Kune Falls">
+                <h3>Kune Falls</h3>
+                <p>Majestic waterfalls amidst lush greenery.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Lions+Point" alt="Lions Point">
+                <h3>Lion's Point</h3>
+                <p>Ideal for sunset views over the valleys.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Karla+Caves" alt="Karla Caves">
+                <h3>Karla Caves</h3>
+                <p>Ancient Buddhist caves with intricate carvings.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Bhaja+Caves" alt="Bhaja Caves">
+                <h3>Bhaja Caves</h3>
+                <p>Historical rock-cut caves.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Duke%27s+Nose" alt="Duke's Nose">
+                <h3>Duke's Nose</h3>
+                <p>Popular spot for rock climbing.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Ryewood+Park" alt="Ryewood Park">
+                <h3>Ryewood Park</h3>
+                <p>Perfect for families and nature lovers.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Services</h2>
+        <p>We provide customized travel packages, trekking guides, and local transportation facilities to ensure a comfortable visit.</p>
+    </section>
+
+    <section id="transport">
+        <h2>Transport Options</h2>
+        <p>Local cabs, autorickshaws, and self-drive rentals are available. Train and road connectivity is excellent from Mumbai and Pune.</p>
+    </section>
+
+    <section id="reviews">
+        <h2>Traveler Reviews</h2>
+        <p><b>Anita Sharma</b>: "The weather and greenery were mesmerizing. Perfect getaway!"</p>
+        <p><b>Ramesh Gupta</b>: "Loved Tiger Point and Della Resorts. Excellent hospitality."</p>
+        <p><b>Priya Kapoor</b>: "Rajmachi Fort trek was unforgettable. Highly recommend visiting during the monsoon."</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: info@lonavalakhandala.com</p>
+        <p>Phone: +91 9876543210</p>
+        <p>Address: Main Street, Lonavala</p>
+    </section>
+
+    <section id="interactive-map">
+        <h2>Interactive Map</h2>
+        <div id="map"></div>
+    </section>
+
+    <footer>
+        <p>© 2024 Lonavala & Khandala Experience. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([18.7557, 73.4062], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+    </script>
+</body>
+</html>

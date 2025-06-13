@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarchu Camping Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('images/Sarchu/Sarchu.jpeg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+
+        .hero h2 {
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+        }
+        
+        .hero p {
+            font-size: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #camping-areas, #transport, #services, #top-sites, #reviews {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .camping-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #transport ul, #services ul, #top-sites ul, #reviews ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-icon {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Sarchu Camping Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#camping-areas">Camping Areas</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Unforgettable Camping in Sarchu</h2>
+            <p>Experience the thrill of camping in the beautiful wilderness of Sarchu.</p>
+            <button>Book Your Camping Experience</button>
+        </div>
+    </section>
+
+    <section id="camping-areas">
+    <h2>Top 10 Camping Sites in Sarchu</h2>
+    <div class="camping-cards">
+        <div class="card">
+            <img src="images\Sarchu\getlstd-property-photo.jpg" alt="Camping Site 1">
+            <h3>Site 1: The Nomadic Camp</h3>
+            <p>Location: Sarchu Plains</p>
+            <p>Rent: ₹2000/night</p>
+            <p>Rustic, scenic camp offering breathtaking views of the mountains.</p>
+        </div>
+        <div class="card">
+            <img src="images\Sarchu/Golden Peak Camp.avif" alt="Camping Site 2">
+            <h3>Site 2: Golden Peak Camp</h3>
+            <p>Location: Near Baralacha La Pass</p>
+            <p>Rent: ₹2500/night</p>
+            <p>Offers panoramic views of the Himalayas, perfect for trekking enthusiasts.</p>
+        </div>
+
+    </div>
+</section>
+
+
+    <section id="top-sites">
+    <h2>Top Sites to See</h2>
+    <div class="site-cards">
+        <div class="site-card">
+            <img src="images/Sarchu/Baralacha La Pass.avif">
+            <h3>Baralacha La Pass</h3>
+            <p>High-altitude pass offering stunning views and a challenging trek.</p>
+        </div>
+        <div class="site-card">
+            <img src="images/Sarchu/Suraj Tal Lake.jpg">
+            <h3>Suraj Tal Lake</h3>
+            <p>Serene lake, perfect for photography and meditation.</p>
+        </div>
+
+    </div>
+</section>
+
+
+    <section id="transport">
+    <h2>Transport Services</h2>
+    <ul>
+        <li>
+            <img src="images\Icons\taxi.png" alt="Taxi Icon" class="transport-icon">
+            <strong>Private Taxi Service</strong> - Comfortable rides from Manali and Leh directly to Sarchu.
+            <p>Service Hours: 24/7 | Rates: Starting at ₹5000</p>
+        </li>
+        <li>
+            <img src="images\Icons\bus.png" alt="Bus Icon" class="transport-icon">
+            <strong>Regular Bus Service</strong> - Affordable bus services connecting Sarchu with Manali and Leh.
+            <p>Service Hours: Daily departures | Rates: Starting at ₹800</p>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section id="services">
+    <h2>Additional Services</h2>
+    <ul>
+        <li><strong>Meals:</strong> Breakfast, Lunch, Dinner</li>
+        <li><strong>Adventure Activities:</strong> Hiking, Rafting</li>
+        <li><strong>Campsite Setup:</strong> Complete setup and takedown of camping gear</li>
+        <li><strong>Guided Tours:</strong> Explore local attractions with knowledgeable guides</li>
+        <li><strong>Bonfire Nights:</strong> Enjoy evenings around a warm bonfire</li>
+        <li><strong>Photography Sessions:</strong> Capture stunning landscapes with professional photographers</li>
+        <li><strong>Equipment Rentals:</strong> Rent gear for trekking and adventure sports</li>
+        <li><strong>Transport Arrangements:</strong> Assistance with transport to/from Sarchu</li>
+        <li><strong>Emergency Medical Services:</strong> First aid and emergency care available</li>
+        <li><strong>Local Cultural Experiences:</strong> Engage with local tribes and learn about their traditions</li>
+    </ul>
+</section>
+
+
+    <section id="reviews">
+    <h2>What Our Campers Say</h2>
+    <div class="review-card">
+        <h4>Rahul Sharma <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+        <p>“Camping in Sarchu was a fantastic adventure. Highly recommend it!”</p>
+    </div>
+    <div class="review-card">
+        <h4>Anjali Verma <span style="color: gold;">★ ★ ★ ★ ☆</span></h4>
+        <p>“Amazing scenery and great service. The hikes were unforgettable!”</p>
+    </div>
+    <div class="review-card">
+        <h4>Vikram Singh <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+        <p>“The best camping experience I've ever had! Will definitely come back.”</p>
+    </div>
+    <div class="review-card">
+        <h4>Priya Desai <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+        <p>“A perfect getaway! The peaceful environment helped me unwind.”</p>
+    </div>
+    <div class="review-card">
+        <h4>Suresh Gupta <span style="color: gold;">★ ★ ★ ★ ☆</span></h4>
+        <p>“Great location and friendly staff. Enjoyed the bonfire nights!”</p>
+    </div>
+    <div class="review-card">
+        <h4>Neha Reddy <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+        <p>“Incredible views and cozy tents. A truly magical experience!”</p>
+    </div>
+    <div class="review-card">
+        <h4>Rahul Mehta <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+        <p>“The best place to disconnect and enjoy nature. Highly recommended!”</p>
+    </div>
+    <div class="review-card">
+        <h4>Sonia Kapoor <span style="color: gold;">★ ★ ★ ★ ☆</span></h4>
+        <p>“Well organized and beautiful location. Had a blast with friends!”</p>
+    </div>
+    <div class="review-card">
+        <h4>Arjun Nair <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+        <p>“Camping under the stars was surreal. Can't wait to return!”</p>
+    </div>
+    <div class="review-card">
+        <h4>Rita Sharma <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+        <p>“An experience of a lifetime! The staff went above and beyond.”</p>
+    </div>
+</section>
+
+
+    <div id="map"></div>
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>For inquiries or bookings, please reach out to us using the following details:</p>
+    <ul>
+        <li>
+            <strong>Email:</strong> <a href="mailto:info@sarchucamping.com">info@sarchucamping.com</a>
+        </li>
+        <li>
+            <strong>Phone:</strong> <a href="tel:+911234567890">+91 12345 67890</a>
+        </li>
+        <li>
+            <strong>Address:</strong> Sarchu Campground, Leh-Manali Highway, Sarchu, India
+        </li>
+        <li>
+            <strong>Follow Us:</strong>
+            <ul>
+                <li><a href="https://www.facebook.com/sarchucamping" target="_blank">Facebook</a></li>
+                <li><a href="https://www.instagram.com/sarchucamping" target="_blank">Instagram</a></li>
+                <li><a href="https://twitter.com/sarchucamping" target="_blank">Twitter</a></li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+    <footer>
+        <p>&copy; 2024 Sarchu Camping Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([32.8022, 77.4478], 13); // Sarchu coordinates
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Add a marker for Sarchu
+        var marker = L.marker([32.8022, 77.4478]).addTo(map);
+        marker.bindPopup('<b>Sarchu!</b><br>Your adventure awaits!').openPopup();
+    </script>
+</body>
+</html>

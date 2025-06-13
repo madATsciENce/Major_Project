@@ -1,0 +1,18 @@
+# Ignore sensitive files
+db.php
+connect.php
+.env
+
+# Ignore log files and cache
+*.log
+*.cache
+
+# Ignore OS/system files
+.DS_Store
+Thumbs.db
+
+# If you use composer (add if you use it)
+vendor/
+
+# If you use node for any part (optional)
+node_modules/

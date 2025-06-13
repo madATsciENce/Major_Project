@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nagarhole National Park Stay Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('https://via.placeholder.com/1500x600?text=Nagarhole+National+Park');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #hotels, #transport, #services, #map, #reviews {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #transport ul, #services ul, #reviews ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-icon {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Nagarhole National Park Stay Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Explore the Wilderness of Nagarhole National Park</h2>
+            <p>Plan your stay and embark on a journey through the rich forests and wildlife.</p>
+            <button>Explore Hotels & Stays</button>
+        </div>
+    </section>
+
+    <section id="hotels">
+        <h2>Top Hotels and Homestays near Nagarhole National Park</h2>
+        <div class="hotel-cards">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+1" alt="Hotel 1">
+                <h3>Hotel 1: Jungle Safari Resort</h3>
+                <p>Location: Kabini River Bank</p>
+                <p>Rent: ₹7000/night</p>
+                <p>Experience luxury in the wild with guided safaris.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+2" alt="Hotel 2">
+                <h3>Hotel 2: Forest Lodge Kabini</h3>
+                <p>Location: Near Park Entrance</p>
+                <p>Rent: ₹6000/night</p>
+                <p>Beautiful lodge with wildlife tours and nature walks.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+3" alt="Hotel 3">
+                <h3>Hotel 3: Safari Stay Nagarhole</h3>
+                <p>Location: South Gate</p>
+                <p>Rent: ₹5000/night</p>
+                <p>Enjoy jungle safaris and cozy cottages.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+4" alt="Hotel 4">
+                <h3>Hotel 4: Riverfront Homestay</h3>
+                <p>Location: Kabini River</p>
+                <p>Rent: ₹5500/night</p>
+                <p>Homestay with wildlife tours and river views.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+5" alt="Hotel 5">
+                <h3>Hotel 5: The Kabini Escape</h3>
+                <p>Location: Kabini Forest</p>
+                <p>Rent: ₹7500/night</p>
+                <p>Exclusive lodge with private safaris and nature walks.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+6" alt="Hotel 6">
+                <h3>Hotel 6: Nature’s Retreat</h3>
+                <p>Location: Near Safari Point</p>
+                <p>Rent: ₹5800/night</p>
+                <p>Great views of the forest and wildlife.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+7" alt="Hotel 7">
+                <h3>Hotel 7: Eco Stay Kabini</h3>
+                <p>Location: Jungle Periphery</p>
+                <p>Rent: ₹4900/night</p>
+                <p>Eco-friendly stay with wildlife experiences.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+8" alt="Hotel 8">
+                <h3>Hotel 8: The Wilderness Resort</h3>
+                <p>Location: Deep Jungle</p>
+                <p>Rent: ₹8000/night</p>
+                <p>Luxurious retreat amidst nature.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+9" alt="Hotel 9">
+                <h3>Hotel 9: Jungle Hideaway</h3>
+                <p>Location: Western Boundary</p>
+                <p>Rent: ₹5300/night</p>
+                <p>Comfortable stay with guided tours and safaris.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+10" alt="Hotel 10">
+                <h3>Hotel 10: Tribal Homestay</h3>
+                <p>Location: Nagarhole Village</p>
+                <p>Rent: ₹4800/night</p>
+                <p>Experience local culture and wildlife.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Services Near Nagarhole National Park</h2>
+        <ul>
+            <li>Guided Wildlife Safaris and Nature Walks</li>
+            <li>Photography Tours for Wildlife Enthusiasts</li>
+            <li>Traditional Local Cuisine and Dining</li>
+            <li>Cycle Rentals for Exploring Nearby Areas</li>
+            <li>Tribal Village Tours and Cultural Experiences</li>
+        </ul>
+    </section>
+
+    <section id="transport">
+        <h2>Transport Options to Nagarhole National Park</h2>
+        <ul>
+            <li><img src="https://via.placeholder.com/20?text=🚌" class="transport-icon">Public Buses from Mysore and Bangalore</li>
+            <li><img src="https://via.placeholder.com/20?text=🚖" class="transport-icon">Taxis and Private Cabs Available</li>
+            <li><img src="https://via.placeholder.com/20?text=🚆" class="transport-icon">Nearest Train Station: Mysore Junction (95 km)</li>
+            <li><img src="https://via.placeholder.com/20?text=✈️" class="transport-icon">Nearest Airport: Mysore Airport (90 km), Bangalore Airport (230 km)</li>
+        </ul>
+    </section>
+
+    <section id="map">
+        <h2>Nagarhole National Park Map</h2>
+        <div id="map"></div>
+    </section>
+
+    <section id="reviews">
+        <h2>Visitor Reviews</h2>
+        <div class="review-card">
+            <h3>Unforgettable Safari Experience</h3>
+            <p>The Jungle Safari Resort was perfect for my wildlife adventure in Nagarhole.</p>
+        </div>
+        <div class="review-card">
+            <h3>Peaceful and Relaxing Stay</h3>
+            <p>The Kabini Escape offered a serene environment with top-notch safaris.</p>
+        </div>
+        <div class="review-card">
+            <h3>Excellent for Wildlife Photography</h3>
+            <p>Forest Lodge Kabini had excellent services for photographers and wildlife enthusiasts.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: contact@nagarholenationalpark.com</p>
+        <p>Phone: +91-9876543212</p>
+        <p>Address: Nagarhole National Park, Mysore, Karnataka, India</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Nagarhole National Park Stay Experience. All Rights Reserved. </p>
+    </footer>
+
+</body>
+</html>

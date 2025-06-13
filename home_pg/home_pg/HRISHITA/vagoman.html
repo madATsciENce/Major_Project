@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vagamon Camping Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #35424a;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('images/Vagamon/images.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+
+        .hero h2 {
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+        }
+        
+        .hero p {
+            font-size: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45b962;
+        }
+
+        section {
+            padding: 50px 20px;
+        }
+
+        .camping-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #35424a;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Vagamon Camping Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#camping-areas">Camping Stays</a></li>
+                    <li><a href="#top-sites">Sites to See</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#map-section">Map</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Discover the Beauty of Vagamon</h2>
+            <p>Experience the serenity and breathtaking landscapes of Vagamon.</p>
+            <button>Book Your Camping Stay</button>
+        </div>
+    </section>
+
+    <section id="camping-areas">
+        <h2>Top 10 Camping Stays in Vagamon</h2>
+        <div class="camping-cards">
+            <div class="card">
+                <img src="images/Vagamon/Vagamon Lake Camp.jpg" alt="Camp 1">
+                <h3>Vagamon Lake Camp</h3>
+                <p>Location: Vagamon</p>
+                <p>Rent: ₹3500/night</p>
+                <p>Enjoy views of the serene lake.</p>
+            </div>
+            <div class="card">
+                <img src="images/Vagamon/Cloudy Hills Camp.jpg" alt="Camp 2">
+                <h3>Cloudy Hills Camp</h3>
+                <p>Location: Vagamon</p>
+                <p>Rent: ₹3700/night</p>
+                <p>A peaceful retreat in the hills.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top 10 Sites to See in Vagamon</h2>
+        <div class="site-cards">
+            <div class="site-card">
+                <img src="images/Vagamon/Vagamon Lake.jpg" alt="Vagamon Lake">
+                <h3>Vagamon Lake</h3>
+                <p>Enjoy boating and a scenic walk around the lake.</p>
+            </div>
+            <div class="site-card">
+                <img src="images/Vagamon/agamon Meadows.jpg" alt="Vagamon Meadows">
+                <h3>Vagamon Meadows</h3>
+                <p>A beautiful meadow perfect for picnics.</p>
+            </div>
+
+    </section>
+
+    <section id="transport">
+    <h2>Transport Information</h2>
+
+    <p>The nearest railway station is at <strong>Kottayam</strong>, 64 km away, and the nearest airport is <strong>Cochin International Airport</strong>, approximately 100 km from Vagamon. Local transport includes taxis and buses for easy access to all tourist attractions.</p>
+
+    <h3>Transport Options</h3>
+    <ul>
+        <li>
+            <img src="images/Icons/train.png" alt="Train Icon" style="vertical-align: middle; margin-right: 8px; width: 20px; height: 20px;"> 
+            <strong>Railway Station:</strong> Kottayam (64 km away)
+        </li>
+        <li>
+            <img src="images/Icons/airplane.png" alt="Airport Icon" style="vertical-align: middle; margin-right: 8px; width: 20px; height: 20px;">
+            <strong>Airport:</strong> Cochin International Airport (100 km away)
+        </li>
+        <li>
+            <img src="images/Icons/car.png" alt="Car Icon" style="vertical-align: middle; margin-right: 8px; width: 20px; height: 20px;">
+            <strong>Car Rentals:</strong> Available in Vagamon for local exploration.
+        </li>
+    </ul>
+ 
+
+    <section id="services">
+    <h2>Available Services</h2>
+    <ul>
+        <li>Guided trekking tours</li>
+        <li>Camping gear rental</li>
+        <li>Bonfire services</li>
+        <li>Local cuisine catering</li>
+        <li>Adventure sports activities</li>
+        <li>Birdwatching tours</li>
+        <li>Nature photography workshops</li>
+        <li>Transportation arrangements</li>
+        <li>Outdoor survival training</li>
+        <li>Firewood supply</li>
+        <li>Group discounts for large bookings</li>
+        <li>Personalized camping experiences</li>
+        <li>Yoga and wellness sessions</li>
+        <li>Stargazing activities</li>
+        <li>Local guides for sightseeing</li>
+    </ul>
+</section>
+
+
+    <section id="reviews">
+    <h2>What Our Guests Say</h2>
+    <div class="reviews">
+        <div class="review">
+            <h3>John Doe</h3>
+            <p>Rating: ★★★★★</p>
+            <p>"An unforgettable experience! The camps were beautiful and the views breathtaking."</p>
+        </div>
+        <div class="review">
+            <h3>Jane Smith</h3>
+            <p>Rating: ★★★★☆</p>
+            <p>"Great service and fantastic location. I highly recommend Vagamon Camping!"</p>
+        </div>
+        <div class="review">
+            <h3>Mike Johnson</h3>
+            <p>Rating: ★★★★★</p>
+            <p>"A perfect getaway for nature lovers. Will definitely visit again!"</p>
+        </div>
+        <div class="review">
+            <h3>Emily Clark</h3>
+            <p>Rating: ★★★★☆</p>
+            <p>"The staff were incredibly helpful, and the facilities were well-maintained. A lovely stay!"</p>
+        </div>
+        <div class="review">
+            <h3>David Brown</h3>
+            <p>Rating: ★★★★★</p>
+            <p>"The scenic beauty and tranquility of Vagamon are unmatched. Highly recommended!"</p>
+        </div>
+        <div class="review">
+            <h3>Susan Lee</h3>
+            <p>Rating: ★★★☆☆</p>
+            <p>"A nice place, but some amenities could use improvement. Overall, a good experience."</p>
+        </div>
+        <div class="review">
+            <h3>Chris Green</h3>
+            <p>Rating: ★★★★★</p>
+            <p>"Absolutely loved the guided trekking tours! The views were phenomenal!"</p>
+        </div>
+        <div class="review">
+            <h3>Laura Wilson</h3>
+            <p>Rating: ★★★★★</p>
+            <p>"A fantastic place for families. Kids had a blast with the adventure sports!"</p>
+        </div>
+    </div>
+</section>
+
+
+    <section id="map-section">
+        <h2>Location Map</h2>
+        <div id="map"></div>
+    </section>
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or need further information, please feel free to reach out to us. We're here to help!</p>
+    
+    <div class="contact-details">
+        <h3>Get in Touch</h3>
+        <p><strong>Email:</strong> info@vagomancamping.com</p>
+        <p><strong>Phone:</strong> +91 12345 67890</p>
+        <p><strong>Address:</strong> Vagamon, Kerala, India</p>
+    </div>
+
+    <form action="/submit-form" method="post" class="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+
+    <footer>
+        <p>&copy; 2024 Vagamon Camping Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([9.6365, 76.9751], 13); // Vagamon coordinates
+
+        // Load and display tile layers on the map
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker for Vagamon
+        var marker = L.marker([9.6365, 76.9751]).addTo(map);
+        marker.bindPopup('<b>Vagamon</b><br>Beautiful hill station for camping.').openPopup();
+    </script>
+</body>
+</html>

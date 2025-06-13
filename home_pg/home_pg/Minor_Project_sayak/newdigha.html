@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Digha</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image:url("digha.jpg");
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #camping-areas, #transport, #services, #top-sites, #reviews {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .camping-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #transport ul, #services ul, #top-sites ul, #reviews ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-icon {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Digha Hotel</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#Hotels">Hotels</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Experience the Magic of Digha</h2>
+            <p>Immerse yourself in the breathtaking beauty of Digha.</p>
+            <button><a href="4.html">Book Your Digha Experience</a></button>
+        </div>
+    </section>
+
+    <section id="Hotels">
+    <h2>Top Hotels near Digha</h2><br>
+    <div class="camping-cards">
+        <div class="card">
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/468595584.jpg?k=c6daa302709280e8ab7814b66b238afaa5725b0d27084748a19a185085913531&o=&hp=1" 	    alt="Hotel Site 1">
+            <h3>Hotel 1: Gitanjali</h3>
+            <p>Location: Digha Beach</p>
+            <p>Rent: ₹3000/night</p>
+            <p>Scenic views with mesmerizing views of the beach.</p>
+        </div>
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiEvicGc9Dg6pXF9ae_U8fu0V30tc4l3O1hg&s" alt="Hotel Site 2">
+            <h3>Hotel 2: Brighton</h3>
+            <p>Location: Adjacent to Digha Beach</p>
+            <p>Rent: ₹3500/night</p>
+            <p>Exclusive breakfast offering breathtaking sunsets by the Beach.</p>
+        </div>
+        <div class="card">
+            <img src="https://hotelcoraldigha.com/wp-content/uploads/2018/12/Silver-Pearl-1-720x470.jpg" alt="Hotel Site 3">
+            <h3>Hotel 3: Coral</h3>
+            <p>Location: Digha Beach area</p>
+            <p>Rent: ₹3200/night</p>
+            <p>Special night DJ experience under the stars.</p>
+        </div>
+        <div class="card">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/7a/35/fa/7-cctv-gymnasium-swimming.jpg?w=1200&h=-1&s=1" alt="Hotel Site 4">
+            <h3>Hotel 4: Royal</h3>
+            <p>Location: Near digha market</p>
+            <p>Rent: ₹3400/night</p>
+            <p>Perfect 5 star experience.</p>
+        </div>
+        <div class="card">
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/375644161.jpg?k=71845fa2ce53f0a67a516387041caf6b1d1068376e819761edcf47ea22b48b0b&o=&hp=1"  	    alt="Hotel Site 5">
+            <h3>Hotel 5: Coastal</h3>
+            <p>Location: Overlooking the beach</p>
+            <p>Rent: ₹3600/night</p>
+            <p>A peaceful site ideal for relaxation and meditation.</p>
+        </div>
+        <div class="card">
+            <img src="https://c.otcdn.com/imglib/hotelfotos/7/3725/hotel-antique-regency-digha-20240119121514154200.jpg" alt="Hotel Site 6">
+            <h3>Hotel 6: Antique Regency</h3>
+            <p>Location: Digha Beach area</p>
+            <p>Rent: ₹3800/night</p>
+            <p>A secluded site surrounded by majestic views.</p>
+        </div>
+        <div class="card">
+            <img src="https://q-xx.bstatic.com/xdata/images/hotel/840x460/442054543.jpg?k=f6c8b4219f671a9e0d6d39e175ac3c13c4b5352187efbee103632a5ec9db92ed&o=" 		    alt="Hotel Site 7">
+            <h3>Hotel 7: Peark View</h3>
+            <p>Location: Eastern side of Digha</p>
+            <p>Rent: ₹3700/night</p>
+            <p>Stunning sunrise views, ideal for early risers.</p>
+        </div>
+        <div class="card">
+            <img src="https://rukmini-ct.flixcart.com/q_75,w_420,h_300,fl_progressive,e_sharpen:80,c_fill,dpr_2,f_auto/ct-hotel-images/places/hotels/cms/3909/3909865/images/image_3909865_fadf2a80-a76c-4b57-9d8e-ddcd778e8452.jpeg" alt="Hotel Site 8">
+            <h3>Hotel 8: Cygnett</h3>
+            <p>Location: Eco-sensitive area</p>
+            <p>Rent: ₹3900/night</p>
+            <p>Stay in harmony with nature, using sustainable practices.</p>
+        </div>
+        <div class="card">
+            <img src="https://r2imghtlak.ibcdn.com/r2-mmt-htl-image/htl-imgs/202101121117581180-0d2a383e8e8d11ee99960a58a9feac02.jpg?&downsize=400:200&crop=400:200;0,2&output-format=webp" alt="Hotel Site 9">
+            <h3>Hotel 9: Diamond Hub</h3>
+            <p>Location: Near the beach</p>
+            <p>Rent: ₹4000/night</p>
+            <p>Perfect for beach enthusiasts and nature lovers.</p>
+        </div>
+        <div class="card">
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/505509401.jpg?k=64e8dc3d5ce46edd44abbf1abe3fee7029142cbbd442229399e56edfd793ef4d&o=&hp=1" 	    alt="Hotel Site 10">
+            <h3>Hotel 10: Grand View</h3>
+            <p>Location: Family-friendly area</p>
+            <p>Rent: ₹3500/night</p>
+            <p>Activities for all ages, making it great for families.</p>
+        </div>
+    </div>
+</section>
+
+
+    <section id="top-sites">
+    <h2>Top Sites to See near Digha Beach</h2>
+    <div class="site-cards">
+        <div class="site-card">
+            <img src="digha1.jpg" alt="Digha Beach">
+            <h3>Digha Beach</h3>
+            <p>The main attraction digha beach, known for its stunning blue waters.</p>
+        </div>
+        <div class="site-card">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipPTZCk0gTajRCHaKBsFiRzzsk10PrYhZelNb2Rr=s680-w680-h510-rw" alt="Marine Aquarium & Regional Centre">
+            <h3>Marine Aquarium & Regional Centre</h3>
+            <p>It is a research center located in Digha.</p>
+        </div>
+        <div class="site-card">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipMPw2l7ZYYnLQOBJsx94g_btQQySmpF38wEXf9m=s294-w294-h220-k-no" alt="Nehru Market">
+            <h3>Nehru Market</h3>
+            <p>This market is situated at Old Digha. You can buy variety of sea fishes here.</p>
+        </div>
+        <div class="site-card">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipP3ImYd4PofRie3zWb_o2NqUhxoUEahYF8KpBUH=s294-w294-h220-k-no" alt="Digha Science Centre & National Science Camp">
+            <h3>Digha Science Centre & National Science Camp</h3>
+            <p>The Science Centre houses some interesting science related displays.</p>
+        </div>
+        <div class="site-card">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipNdi1q_zFHYr0c_N6GaAUHqN-diCGCDL64ncRU3=s294-w294-h220-k-no" alt="Chandaneswar Shiva Temple">
+            <h3>Chandaneswar Shiva Temple</h3>
+            <p>Chandaneswar Temple⁩⁦ is a famous Shiva temple located in Chandaneswar, Baleswar district of Odisha, India.</p>
+        </div>
+        <div class="site-card">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipNPXidxVUM4Dg2HwwvSvCu-OMMhSmttELNVZvfa=s294-w294-h220-k-no" alt="Biswa Bangla Park">
+            <h3>Biswa Bangla Park</h3>
+            <p>Biswa Bangla Park in Digha new township,Midnapore listed under Parks in Midnapore.</p>
+        </div>
+        <div class="site-card">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipOiRnW5gt-WpiJWqxJ1jhtcKTMNe7vd7RoeQegs=s294-w294-h220-k-no" alt="DheuSagar">
+            <h3>DheuSagar</h3>
+            <p>There is beautiful greenery and lovely artificial pakkhiraaj ship.</p>
+        </div>
+        <div class="site-card">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipPdZMYetdWXinBlGjy4hzC3XOp7r0W7Ab7lSGQ5=s294-w294-h220-k-no" alt="Amrabati park">
+            <h3>Amrabati park</h3>
+            <p>At a distance of 1 km from Digha Railway Station, Amarabati Park is a beautiful park located in Digha, West Bengal.</p>
+        </div>
+     
+    </div>
+</section>
+
+
+    <section id="transport">
+    <h2>Transport Services</h2>
+    <div class="transport-cards">
+        <div class="transport-card">
+            <img src="taxi.png" width="50" height="50">
+            <h3>Private Taxi Service</h3>
+            <p>Comfortable rides from Railway Station to Digha Beach.</p>
+            <p><strong>Service Hours:</strong> 24/7</p>
+            <p><strong>Rates:</strong> Starting at ₹6000</p>
+        </div>
+        <div class="transport-card">
+            <img src="bus.png" width="50" height="50">
+            <h3>Regular Bus Service</h3>
+            <p>Economical transport options from Manali.</p>
+            <p><strong>Service Hours:</strong> Daily</p>
+            <p><strong>Rates:</strong> Starting at ₹1500</p>
+        </div>
+        <div class="transport-card">
+            <img src="bike.png" width="50" height="50">
+            <h3>Bike Rentals</h3>
+            <p>Explore the region on your own terms with bike rentals.</p>
+            <p><strong>Service Hours:</strong> 24/7</p>
+            <p><strong>Rates:</strong> Starting at ₹1000/day</p>
+        </div>
+        <div class="transport-card">
+            <img src="airplane.png" width="50" height="50">
+            <h3>Helicopter Service</h3>
+            <p>Luxury transport option for a quick and scenic journey.</p>
+            <p><strong>Service Hours:</strong> By appointment</p>
+            <p><strong>Rates:</strong> Starting at ₹25000</p>
+        </div>
+    </div>
+</section>
+
+
+    <section id="services">
+    <h2>Services Offered</h2>
+    <ul>
+        <li>Guided Trekking Tours</li>
+        <li>Meal Plans (Breakfast, Lunch, Dinner)</li>
+        <li>Swimming Gear Rentals</li>
+        <li>Dj Facilities</li>
+        <li>Photography Workshops</li>
+        <li>Bonfire Nights</li>
+        <li>Adventure Sports (Zorbing, Skiing)</li>
+        <li>Yoga and Meditation Sessions</li>
+        <li>Local Culture Workshops (Crafts, Cooking)</li>
+        <li>Transportation Arrangements</li>
+        <li>Safety and First Aid Services</li>
+    </ul>
+</section>
+
+    <section id="reviews">
+    <h2>Customer Reviews</h2>
+    <div class="review-card">
+        <p><strong>Aarav Sharma</strong> <span class="rating">★★★★★</span>: "An unforgettable experience at Chandra Tal! The scenery is simply breathtaking!"</p>
+    </div>
+    <div class="review-card">
+        <p><strong>Sara Khan</strong> <span class="rating">★★★★☆</span>: "The camping sites are well-maintained and the services are excellent. Highly recommended!"</p>
+    </div>
+    <div class="review-card">
+        <p><strong>Rahul Mehta</strong> <span class="rating">★★★★★</span>: "The lake is a hidden gem! A perfect escape from city life!"</p>
+    </div>
+    <div class="review-card">
+        <p><strong>Priya Verma</strong> <span class="rating">★★★★☆</span>: "Amazing experience! The night sky is mesmerizing, and the campfire was a highlight!"</p>
+    </div>
+    <div class="review-card">
+        <p><strong>Vikram Singh</strong> <span class="rating">★★★★★</span>: "Perfect getaway! The guides were knowledgeable and made our trek unforgettable!"</p>
+    </div>
+    <div class="review-card">
+        <p><strong>Neha Joshi</strong> <span class="rating">★★★★☆</span>: "Had a great time camping here. The amenities were good, and the location is stunning!"</p>
+    </div>
+    <div class="review-card">
+        <p><strong>Arjun Patel</strong> <span class="rating">★★★★★</span>: "One of the best experiences of my life! Will definitely return!"</p>
+    </div>
+</section>
+
+
+    <section id="map">
+        <h2>Location Map</h2>
+        <div id="map"></div>
+    </section>
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or need more information, feel free to reach out to us!</p>
+    <div class="contact-details">
+        <h3>Get in Touch</h3>
+        <p><strong>Email:</strong> info@dighaservices.com</p>
+        <p><strong>Phone:</strong> +91 98765 43210</p>
+        <p><strong>Address:</strong> Old Digha, Kolkata- 713128, India</p>
+    </div>
+    <div class="contact-form">
+        <h3>Contact Form</h3>
+        <form action="#" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+
+    <footer>
+        <p>&copy; 2024 Chandra Tal Lake Camping Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([32.1954, 77.1856], 13); // Coordinates of Chandra Tal Lake
+
+        // Add a tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker for Chandra Tal Lake
+        L.marker([32.1954, 77.1856]).addTo(map)
+            .bindPopup('Chandra Tal Lake')
+            .openPopup();
+    </script>
+</body>
+</html>

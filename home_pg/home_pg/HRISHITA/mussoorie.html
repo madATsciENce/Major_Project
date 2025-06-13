@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mussoorie Camping Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('Best-of-Mussoorie-with-Rishikesh-and-Haridwar-1.webp');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #camping-areas, #transport, #services, #top-sites, #reviews {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .camping-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #transport ul, #services ul, #top-sites ul, #reviews ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-icon {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Mussoorie Camping Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#camping-areas">Camping Areas</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Unforgettable Camping in Mussoorie</h2>
+            <p>Experience nature like never before in the serene hills of Mussoorie.</p>
+            <button>Book Your Camping Experience</button>
+        </div>
+    </section>
+
+    <section id="camping-areas">
+        <h2>Top 10 Camping Sites in Mussoorie</h2>
+        <div class="camping-cards">
+            <div class="card">
+                <img src="camp-mussoorie.jpg" alt="Camping Site 1">
+                <h3>Site 1: Kempty Falls Camp</h3>
+                <p>Location: Kempty Falls</p>
+                <p>Rent: ₹2000/night</p>
+                <p>A picturesque camping site near the famous Kempty Falls.</p>
+            </div>
+            <div class="card">
+                <img src="Forest-Camping-Adventure.jpg" alt="Camping Site 2">
+                <h3>Site 2: Camel Back Road Camp</h3>
+                <p>Location: Camel Back Road</p>
+                <p>Rent: ₹1800/night</p>
+                <p>Enjoy stunning sunset views while camping on Camel Back Road.</p>
+            </div>
+            <div class="card">
+                <img src="eccc4426611411e7b7e40224510f5e5b.avif" alt="Camping Site 3">
+                <h3>Site 3: Mussoorie Lake Camp</h3>
+                <p>Location: Mussoorie Lake</p>
+                <p>Rent: ₹2200/night</p>
+                <p>Camp by the beautiful Mussoorie Lake, perfect for boating.</p>
+            </div>
+            <div class="card">
+                <img src="556278736.jpg" alt="Camping Site 4">
+                <h3>Site 4: Lal Tibba Camp</h3>
+                <p>Location: Lal Tibba</p>
+                <p>Rent: ₹2500/night</p>
+                <p>The highest point in Mussoorie offers breathtaking views.</p>
+            </div>
+        </div>
+    </section>
+<section id="top-sites">
+        <h2>Top Sites to See</h2>
+        <div class="site-cards">
+            <div class="site-card">
+		<img src="kempty-falls-mussoorie-tourism-entry-fee-timings-holidays-reviews-header.jpg"> 
+                <h3>Kempty Falls</h3>
+                <p>A must-visit waterfall in Mussoorie.</p>
+            </div>
+            <div class="site-card">
+		<img src="gun-hill-2740116.webp"> 
+                <h3>Gun Hill</h3>
+                <p>Famous for its cable car ride and stunning views.</p>
+         </div>
+            <div class="site-card">
+		<img src="1721991576812_jharpanifalls_20190511145913_20190511145952.webp">
+                <h3>Jharipani Falls</h3>
+                <p>A hidden gem perfect for a quiet day out.</p>
+            </div>
+            <div class="site-card">
+		<img src="caption.jpg">              
+		<h3>Shedup Choepelling Temple</h3>
+                <p>A serene temple known for its tranquil environment.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="transport">
+        <h2>Transport Services</h2>
+        <ul>
+            <li>
+                <img src="https://via.placeholder.com/20?text=T" alt="Taxi" class="transport-icon">
+                <strong>Private Taxi Service</strong>
+                <p>Enjoy comfortable rides to and from your camping site with our private taxi service.</p>
+            </li>
+            <li>
+                <img src="https://via.placeholder.com/20?text=C" alt="Cab" class="transport-icon">
+                <strong>Shared Cabs</strong>
+                <p>Cost-effective shared cabs for group travel to popular destinations around Mussoorie.</p>
+            </li>
+            <li>
+                <img src="https://via.placeholder.com/20?text=A" alt="Airport" class="transport-icon">
+                <strong>Airport Pickup and Drop</strong>
+                <p>Convenient transportation to and from Jolly Grant Airport for a hassle-free experience.</p>
+            </li>
+            <li>
+                <img src="https://via.placeholder.com/20?text=S" alt="Sightseeing" class="transport-icon">
+                <strong>Local Sightseeing Tours</strong>
+                <p>Join guided local tours that cover major attractions and hidden gems in Mussoorie.</p>
+            </li>
+            <li>
+                <img src="https://via.placeholder.com/20?text=B" alt="Bus" class="transport-icon">
+                <strong>Bus Services to Nearby Attractions</strong>
+                <p>Regular bus services to nearby locations like Dhanolti, Kempty Falls, and more.</p>
+            </li>
+            <li>
+                <img src="https://via.placeholder.com/20?text=B" alt="Bicycle" class="transport-icon">
+                <strong>Bicycle Rentals</strong>
+                <p>Explore the scenic beauty of Mussoorie on two wheels with our bicycle rentals.</p>
+            </li>
+        </ul>
+    </section>
+
+
+    <section id="services">
+        <h2>Additional Services</h2>
+        <ul>
+            <li>Meals Included: Breakfast, Lunch, and Dinner</li>
+            <li>Campfire and Barbecue: Enjoy cozy evenings under the stars</li>
+            <li>Adventure Activities: Trekking, Rappelling, and Zip-lining</li>
+            <li>Guided Nature Walks: Explore the flora and fauna of Mussoorie</li>
+            <li>Photography Sessions: Capture your memorable moments</li>
+        </ul>
+    </section>
+
+        <section id="reviews">
+        <h2>What Our Campers Say</h2>
+        <div class="review-card">
+            <h4>Aarav Mehta <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+            <p>“The camping experience was amazing! The views were breathtaking, and the service was top-notch!”</p>
+        </div>
+        <div class="review-card">
+            <h4>Priya Sharma <span style="color: gold;">★ ★ ★ ★</span></h4>
+            <p>“Had a great time camping with friends. The campfire nights were unforgettable!”</p>
+        </div>
+        <div class="review-card">
+            <h4>Rohit Singh <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+            <p>“Perfect getaway from the city hustle. Highly recommend for nature lovers!”</p>
+        </div>
+        <div class="review-card">
+            <h4>Tanvi Gupta <span style="color: gold;">★ ★ ★ ★</span></h4>
+            <p>“Everything was well organized. The guides were friendly and knowledgeable!”</p>
+        </div>
+        <div class="review-card">
+            <h4>Vikram Joshi <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+            <p>“Absolutely loved the adventure activities offered! Will definitely come back.”</p>
+        </div>
+        <div class="review-card">
+            <h4>Neha Kaur <span style="color: gold;">★ ★ ★ ★</span></h4>
+            <p>“A beautiful escape into nature. The food was delicious, and the staff was very helpful.”</p>
+        </div>
+        <div class="review-card">
+            <h4>Siddharth Rao <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+            <p>“This camping experience was everything I hoped for and more. Highly recommended!”</p>
+        </div>
+        <div class="review-card">
+            <h4>Meera Nair <span style="color: gold;">★ ★ ★ ★</span></h4>
+            <p>“The campsite was perfect, and the location is just stunning. A real hidden gem!”</p>
+        </div>
+    </section>
+
+    <div id="map"></div>
+
+    <footer>
+        <p>&copy; 2024 Mussoorie Camping Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([30.4501, 78.0856], 13); // Mussoorie coordinates
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Add a marker for Mussoorie
+        var marker = L.marker([30.4501, 78.0856]).addTo(map);
+        marker.bindPopup('<b>Mussoorie!</b><br>This is where your adventure begins!').openPopup();
+    </script>
+</body>
+</html>
+

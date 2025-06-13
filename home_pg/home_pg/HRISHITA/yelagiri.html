@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yelagiri Camping Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #35424a;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('images/Yelagiri/Yelagiri_result.webp');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Adds a shadow around the text */
+        }
+        
+        .hero p {
+            font-size: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Adds a shadow around the text */
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45b962;
+        }
+
+        section {
+            padding: 50px 20px;
+        }
+
+        .camping-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #35424a;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Yelagiri Camping Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#camping-areas">Camping Stays</a></li>
+                    <li><a href="#top-sites">Sites to See</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#map-section">Map</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Discover the Beauty of Yelagiri</h2>
+            <p>Experience the tranquility and stunning landscapes of Yelagiri.</p>
+            <button>Book Your Camping Stay</button>
+        </div>
+    </section>
+
+    <section id="camping-areas">
+        <h2>Top 10 Camping Stays in Yelagiri</h2>
+        <div class="camping-cards">
+            <div class="card">
+                <img src="images/Yelagiri/Yelagiri Hill Camp.webp" alt="Camp 1">
+                <h3>Yelagiri Hill Camp</h3>
+                <p>Location: Yelagiri</p>
+                <p>Rent: ₹3500/night</p>
+                <p>Enjoy panoramic views of the hills.</p>
+            </div>
+            <div class="card">
+                <img src="images/Yelagiri/Nature's Retreat Camp.jpg" alt="Camp 2">
+                <h3>Nature's Retreat Camp</h3>
+                <p>Location: Yelagiri</p>
+                <p>Rent: ₹3700/night</p>
+                <p>A peaceful escape in nature.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top 10 Sites to See in Yelagiri</h2>
+        <div class="site-cards">
+            <div class="site-card">
+                <img src="images/Yelagiri/Yelagiri Lake.webp" alt="Yelagiri Lake">
+                <h3>Yelagiri Lake</h3>
+                <p>Enjoy boating and scenic walks around the lake.</p>
+            </div>
+            <div class="site-card">
+                <img src="images/Yelagiri/Yelagiri Meadows.jpg" alt="Yelagiri Meadows">
+                <h3>Yelagiri Meadows</h3>
+                <p>Experience the lush green meadows perfect for picnics.</p>
+            </div>
+
+        </div>
+    </section>
+    <section id="transport">
+        <h2>Transport Options</h2>
+        <p>Yelagiri is well connected by road. The nearest airport is in Bangalore, and the nearest railway station is in Jolarpettai.</p>
+        <p>Local transport includes buses, taxis, and auto-rickshaws.</p>
+    
+        <div class="transport-icons">
+            <div class="transport-option">
+                <img src="images/Icons/airplane.png" alt="Airport Logo" class="transport-logo" style="width: 50px; height: 50px;"> 
+                <h3>Air Travel</h3>
+                <p>The nearest airport is Kempegowda International Airport, Bangalore, approximately 180 km from Yelagiri.</p>
+            </div>
+            <div class="transport-option">
+                <img src="images/Icons/train.png" alt="Train Logo" class="transport-logo" style="width: 50px; height: 50px;">
+                <h3>Rail Travel</h3>
+                <p>Jolarpettai is the closest railway station, around 21 km away, with regular trains from major cities.</p>
+            </div>
+    
+            <div class="transport-option">
+                <img src="images/Icons/car.png" alt="Taxi Logo" class="transport-logo" style="width: 50px; height: 50px;">
+                <h3>Taxi Services</h3>
+                <p>Local taxis and auto-rickshaws are available for hire, providing easy access to local attractions.</p>
+            </div>
+        </div>
+    </section>
+
+
+   <section id="services">
+    <h2>Additional Services</h2>
+    <ul>
+        <li>Guided Tours</li>
+        <li>Adventure Activities</li>
+        <li>Campfire Services</li>
+        <li>Food & Dining</li>
+        <li>Pick-up & Drop Services</li>
+        <li>Equipment Rental</li>
+        <li>Nature Walks</li>
+        <li>Photography Workshops</li>
+        <li>Yoga Sessions</li>
+        <li>Birdwatching Tours</li>
+    </ul>
+</section>
+
+
+    <section id="reviews">
+    <h2>Reviews and Ratings</h2>
+    <div class="review">
+        <p><strong>John Doe</strong> - ⭐⭐⭐⭐⭐</p>
+        <p>"Had an amazing time camping in Yelagiri! The views were breathtaking."</p>
+    </div>
+    <div class="review">
+        <p><strong>Jane Smith</strong> - ⭐⭐⭐⭐⭐</p>
+        <p>"Perfect getaway for nature lovers. Highly recommend the hilltop camp!"</p>
+    </div>
+    <div class="review">
+        <p><strong>Michael Johnson</strong> - ⭐⭐⭐⭐</p>
+        <p>"The campsite was well-maintained and the staff were friendly. Will definitely visit again!"</p>
+    </div>
+    <div class="review">
+        <p><strong>Emily Davis</strong> - ⭐⭐⭐⭐⭐</p>
+        <p>"A great experience overall! The campfire nights were the highlight of our trip."</p>
+    </div>
+    <div class="review">
+        <p><strong>David Wilson</strong> - ⭐⭐⭐</p>
+        <p>"The location was beautiful, but we encountered some issues with the food service."</p>
+    </div>
+    <div class="review">
+        <p><strong>Sarah Brown</strong> - ⭐⭐⭐⭐⭐</p>
+        <p>"Loved every moment! The guided tours were informative and fun."</p>
+    </div>
+</section>
+
+
+    <section id="map-section">
+        <h2>Find Us on the Map</h2>
+        <div id="map"></div>
+    </section>
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or would like to make a booking, feel free to reach out to us!</p>
+    <p>You can also reach us at:</p>
+    <p>Email: <a href="mailto:info@yelagricamping.com">info@yelagricamping.com</a></p>
+    <p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+
+    <form action="#" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+        </div>
+        <div>
+            <button type="submit">Send Message</button>
+        </div>
+    </form>
+</section>
+
+
+    <footer>
+        <p>&copy; 2024 Yelagiri Camping Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([12.4633, 78.5690], 13); // Yelagiri coordinates
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Marker for Yelagiri
+        L.marker([12.4633, 78.5690]).addTo(map)
+            .bindPopup('Yelagiri Hill')
+            .openPopup();
+    </script>
+</body>
+</html>

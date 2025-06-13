@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaisalmer Camping Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('images/Jaisalmer/cover.jpg');
+            background-size: cover;
+            color: rgb(255, 255, 255);
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+        }
+        
+        .hero p {
+            font-size: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #camping-areas, #transport, #services, #top-sites, #reviews {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .camping-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #transport ul, #services ul, #top-sites ul, #reviews ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-icon {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Jaisalmer Camping Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#camping-areas">Camping Areas</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Experience the Magic of Jaisalmer Desert</h2>
+            <p>Immerse yourself in the breathtaking beauty of Jaisalmer.</p>
+            <button>Book Your Camping Experience</button>
+        </div>
+    </section>
+
+    <section id="camping-areas">
+        <h2>Top Camping Sites near Jaisalmer</h2> 
+        <div class="camping-cards">
+            <div class="card">
+                <img src="images/Jaisalmer/Jaisalmer+Site+1.jpg" alt="Camping Site 1">
+                <h3>Site 1: Desert Star Camp</h3>
+                <p>Location: Sam Sand Dunes</p>
+                <p>Rent: ₹4000/night</p>
+                <p>A beautiful site for a starlit desert camping experience.</p>
+            </div>
+            <div class="card">
+                <img src="images/Jaisalmer/Jaisalmer+Site+2.jpg" alt="Camping Site 2">
+                <h3>Site 2: Royal Dunes Camp</h3>
+                <p>Location: Near Kuldhara Village</p>
+                <p>Rent: ₹4500/night</p>
+                <p>Luxurious tents with stunning views of the dunes.</p>
+            </div>
+            <div class="card">
+                <img src="images/Jaisalmer/Jaisalmer+Site+3.avif" alt="Camping Site 3">
+                <h3>Site 3: Thar Desert Camp</h3>
+                <p>Location: Thar Desert area</p>
+                <p>Rent: ₹3800/night</p>
+                <p>Perfect for adventure seekers and nature lovers.</p>
+            </div>
+            <div class="card">
+                <img src="images/Jaisalmer/Jaisalmer+Site+4.jpg" alt="Camping Site 4">
+                <h3>Site 4: Golden Desert Camp</h3>
+                <p>Location: Jaisalmer outskirts</p>
+                <p>Rent: ₹4200/night</p>
+                <p>A serene site with picturesque views of the golden sands.</p>
+            </div>
+            <div class="card">
+                <img src="Jaisalmer+Site+5.jpg" alt="Camping Site 5">
+                <h3>Site 5: Sunset Camp</h3>
+                <p>Location: Near sand dunes</p>
+                <p>Rent: ₹4600/night</p>
+                <p>Enjoy mesmerizing sunsets and bonfire nights.</p>
+            </div>
+            <div class="card">
+                <img src="images/Jaisalmer/Jaisalmer+Site+6.jpg" alt="Camping Site 6">
+                <h3>Site 6: Oasis Camp</h3>
+                <p>Location: Near Kuldhara</p>
+                <p>Rent: ₹4400/night</p>
+                <p>A unique desert experience amidst nature.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top Sites to See near Jaisalmer</h2>
+        <div class="site-cards">
+            <div class="site-card">
+                <img src="images/Jaisalmer/Jaisalmer+Fort.webp" alt="Jaisalmer Fort">
+                <h3>Jaisalmer Fort</h3>
+                <p>The iconic fort that rises majestically above the city.</p>
+            </div>
+            <div class="site-card">
+                <img src="images/Jaisalmer/Patwon+Ki+Haveli.jpg" alt="Patwon Ki Haveli">
+                <h3>Patwon Ki Haveli</h3>
+                <p>A group of five havelis known for their intricate architecture.</p>
+            </div>
+            <div class="site-card">
+                <img src="images/Jaisalmer/Sam+Sand+Dunes.webp" alt="Sam Sand Dunes">
+                <h3>Sam Sand Dunes</h3>
+                <p>A must-visit for camel rides and desert safaris.</p>
+            </div>
+            <div class="site-card">
+                <img src="images/Jaisalmer/Gadisar+Lake.jpg" alt="Gadisar Lake">
+                <h3>Gadisar Lake</h3>
+                <p>A picturesque lake surrounded by temples and shrines.</p>
+            </div>
+            <div class="site-card">
+                <img src="images/Jaisalmer/Kuldhara+Village.jpeg" alt="Kuldhara Village">
+                <h3>Kuldhara Village</h3>
+                <p>A historic village with intriguing legends.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Services Provided</h2>
+        <ul>
+            <li><img src="Images/Icons/car.png" class="transport-icon" alt="Pickup & Drop Services"> Pickup & Drop Services</li>
+            <li><img src="Images/Icons/desert.png" class="transport-icon" alt="Guided Desert Safaris"> Guided Desert Safaris</li>
+            <li><img src="Images/Icons/travel.png" class="transport-icon" alt="Camel Rides"> Camel Rides</li>
+            <li><img src="Images/Icons/bonfire.png" class="transport-icon" alt="Bonfire Nights"> Bonfire Nights</li>
+            <li><img src="Images/Icons/dinner.png" class="transport-icon" alt="Dinner under the Stars"> Dinner under the Stars</li>
+        </ul>
+    </section>
+
+    <section id="transport">
+        <h2>Transportation Options</h2>
+        <ul>
+            <li>Airport Transfers</li>
+            <li>Local Sightseeing Tours</li>
+            <li>Rental Bicycles & Scooters</li>
+            <li>Private Car Rentals</li>
+        </ul>
+    </section>
+
+    <section id="reviews">
+        <h2>Customer Reviews</h2>
+        <div class="review-card">
+            <h3>Amazing Experience!</h3>
+            <p>"Camping in Jaisalmer was an unforgettable experience. The stars at night were breathtaking!"</p>
+            <p>- Ravi Kumar</p>
+        </div>
+        <div class="review-card">
+            <h3>Perfect Getaway</h3>
+            <p>"The desert camp was well organized and the staff were friendly. Highly recommended!"</p>
+            <p>- Anita Sharma</p>
+        </div>
+        <div class="review-card">
+            <h3>Beautiful Location</h3>
+            <p>"Waking up to the sound of the desert was magical. Would love to come back!"</p>
+            <p>- Prashant Singh</p>
+        </div>
+    </section>
+
+    <section id="map">
+        <h2>Explore Jaisalmer</h2>
+        <div id="map"></div>
+    </section>
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or would like to know more about our camping experiences, feel free to reach out!</p>
+    <ul>
+        <li>Email: info@jaisalmercamping.com</li>
+        <li>Phone: +91 98765 43210</li>
+        <li>Address: Jaisalmer, Rajasthan, India</li>
+    </ul>
+    <form id="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+    <footer>
+        <p>&copy; 2024 Jaisalmer Camping Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize Leaflet map
+        var map = L.map('map').setView([26.9157, 70.9083], 10); // Center on Jaisalmer
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Add marker for Jaisalmer Fort
+        L.marker([26.9124, 70.3624]).addTo(map)
+            .bindPopup('Jaisalmer Fort')
+            .openPopup();
+    </script>
+</body>
+</html>

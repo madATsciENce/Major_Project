@@ -1,0 +1,224 @@
+/* Global Container for Both Sections */
+.info-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 4rem 1rem;
+}
+
+/* Climate Section */
+.climate-section {
+  flex: 1 1 500px;
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #6c5ce7 100%);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.climate-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="clouds" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="30" r="8" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="70" r="12" fill="rgba(255,255,255,0.08)"/><circle cx="50" cy="20" r="6" fill="rgba(255,255,255,0.12)"/></pattern></defs><rect width="100" height="100" fill="url(%23clouds)"/></svg>');
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.climate-section h2,
+.visa-section h2 {
+  font-size: 3rem;
+  color: #fff;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  position: relative;
+}
+
+.climate-section > p {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  z-index: 2;
+  position: relative;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  z-index: 2;
+  position: relative;
+}
+
+.buttons button {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  min-width: 140px;
+  transition: all 0.3s ease;
+}
+
+.buttons button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.buttons button:hover::before {
+  left: 100%;
+}
+
+.buttons button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.content-box {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.content-box p {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Weather Icons */
+.buttons button[onclick*="summer"]::before {
+  content: '☀️ ';
+  font-size: 1.2rem;
+}
+
+.buttons button[onclick*="monsoon"]::before {
+  content: '🌧️ ';
+  font-size: 1.2rem;
+}
+
+.buttons button[onclick*="winter"]::before {
+  content: '❄️ ';
+  font-size: 1.2rem;
+}
+
+/* Visa Section */
+.visa-section {
+  flex: 1 1 500px;
+  background: linear-gradient(135deg, #fd79a8 0%, #e84393 50%, #a29bfe 100%);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.visa-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="passport" width="50" height="50" patternUnits="userSpaceOnUse"><rect x="10" y="10" width="30" height="20" fill="rgba(255,255,255,0.05)" rx="2"/><circle cx="25" cy="35" r="3" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23passport)"/></svg>');
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.visa-section p {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.95);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  z-index: 2;
+  position: relative;
+}
+
+.visa-section a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 25px;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+  border: 2px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(10px);
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.visa-section a:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .info-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .climate-section,
+  .visa-section {
+    flex: 1 1 100%;
+    padding: 2rem;
+  }
+
+  .climate-section h2,
+  .visa-section h2 {
+    font-size: 2.5rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .buttons button {
+    width: 200px;
+  }
+
+  .content-box {
+    padding: 1.5rem;
+  }
+}

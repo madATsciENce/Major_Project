@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dandeli National Park Stay Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('https://via.placeholder.com/1500x600?text=Dandeli+National+Park');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #hotels, #transport, #services, #map, #reviews {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #transport ul, #services ul, #reviews ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-icon {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Dandeli National Park Stay Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Discover the Thrills of Dandeli National Park</h2>
+            <p>Explore dense forests, exciting wildlife, and adventure sports in the Western Ghats.</p>
+            <button>Explore Hotels & Stays</button>
+        </div>
+    </section>
+
+    <section id="hotels">
+        <h2>Top Hotels and Homestays near Dandeli National Park</h2>
+        <div class="hotel-cards">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+1" alt="Hotel 1">
+                <h3>Jungle Lodge Resort</h3>
+                <p>Location: Dandeli</p>
+                <p>Rent: ₹7000/night</p>
+                <p>Stay in the heart of nature with wildlife safaris.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+2" alt="Hotel 2">
+                <h3>Wildlife Valley Homestay</h3>
+                <p>Location: Near Dandeli River</p>
+                <p>Rent: ₹4000/night</p>
+                <p>Homestay offering local cuisine and serene river views.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+3" alt="Hotel 3">
+                <h3>Riverfront Resort Dandeli</h3>
+                <p>Location: Riverside</p>
+                <p>Rent: ₹8500/night</p>
+                <p>Luxury resort with river adventures and bird watching.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+4" alt="Hotel 4">
+                <h3>Eco Retreat Lodge</h3>
+                <p>Location: Forest Area</p>
+                <p>Rent: ₹5000/night</p>
+                <p>Eco-friendly lodge offering guided trekking and camping.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+5" alt="Hotel 5">
+                <h3>Adventure Camp Stay</h3>
+                <p>Location: Dandeli Jungle</p>
+                <p>Rent: ₹6000/night</p>
+                <p>Perfect for adventure lovers with rafting and hiking.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+6" alt="Hotel 6">
+                <h3>Mountain View Resort</h3>
+                <p>Location: Dandeli Hilltop</p>
+                <p>Rent: ₹5500/night</p>
+                <p>Enjoy panoramic views and nature walks.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+7" alt="Hotel 7">
+                <h3>Green Woods Homestay</h3>
+                <p>Location: Near Dandeli Park</p>
+                <p>Rent: ₹4800/night</p>
+                <p>Stay close to nature with organic farm visits.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+8" alt="Hotel 8">
+                <h3>Jungle River Lodge</h3>
+                <p>Location: Near Kali River</p>
+                <p>Rent: ₹5300/night</p>
+                <p>Experience thrilling water sports and bonfires.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+9" alt="Hotel 9">
+                <h3>Wildlife Haven Resort</h3>
+                <p>Location: Dandeli</p>
+                <p>Rent: ₹6200/night</p>
+                <p>Ideal for wildlife enthusiasts with guided safaris.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+10" alt="Hotel 10">
+                <h3>Riverside Cottages</h3>
+                <p>Location: Kali Riverbank</p>
+                <p>Rent: ₹5800/night</p>
+                <p>Cottages with private access to the river for kayaking.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Available Services</h2>
+        <ul>
+            <li>Wildlife Safaris</li>
+            <li>River Rafting and Kayaking</li>
+            <li>Nature Walks and Bird Watching</li>
+            <li>Campfires and Barbeque Nights</li>
+            <li>Yoga and Meditation Retreats</li>
+        </ul>
+    </section>
+
+    <section id="transport">
+        <h2>Transport Options</h2>
+        <ul>
+            <li><img src="https://via.placeholder.com/20" class="transport-icon" alt="Bus">Local Buses: Services from nearby towns and cities.</li>
+            <li><img src="https://via.placeholder.com/20" class="transport-icon" alt="Taxi">Taxis: Easily available for hire in Dandeli.</li>
+            <li><img src="https://via.placeholder.com/20" class="transport-icon" alt="Rental Car">Car Rentals: Self-drive cars for forest and town exploration.</li>
+            <li><img src="https://via.placeholder.com/20" class="transport-icon" alt="Bicycle">Bicycle Rentals: For eco-friendly exploration of Dandeli.</li>
+        </ul>
+    </section>
+
+    <section id="map">
+        <h2>Location Map</h2>
+        <div id="map"></div>
+    </section>
+
+    <section id="reviews">
+        <h2>Visitor Reviews</h2>
+        <div class="review-card">
+            <h4>David Brown</h4>
+            <p>“Dandeli offers a perfect mix of adventure and nature. A must-visit!”</p>
+        </div>
+        <div class="review-card">
+            <h4>Emily Taylor</h4>
+            <p>“The river rafting experience was thrilling, and the staff were great!”</p>
+        </div>
+        <div class="review-card">
+            <h4>Sophie Martin</h4>
+            <p>“I loved the peaceful homestay and bird-watching tours. Truly refreshing.”</p>
+        </div>
+    </section>
+
+    <footer>
+        <h2>Contact Us</h2>
+        <p>For inquiries, please email us at: info@dandelinationalpark.com</p>
+        <p>Phone: +91 98765 43210</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // JavaScript for the map
+        var map = L.map('map').setView([15.2456, 74.6209], 10); // Coordinates for Dandeli National Park
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        L.marker([15.2456, 74.6209]).addTo(map)
+            .bindPopup('Dandeli National Park')
+            .openPopup();
+    </script>
+
+</body>
+</html>

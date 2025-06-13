@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishikesh Camping Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('Rishikesh.jpeg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #camping-areas, #transport, #services, #top-sites, #reviews {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .camping-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+       #transport {
+        font-family: 'Arial', sans-serif; /* Default font for the section */
+    }
+    #transport h2 {
+        font-family: 'Georgia', serif; /* Font for the heading */
+        font-size: 2em;
+        font-weight: bold;
+    }
+    #transport ul {
+        list-style-type: none; /* Remove default bullets */
+        padding: 0;
+    }
+    #transport li {
+        font-family: 'Verdana', sans-serif; /* Font for list items */
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+    #transport li strong {
+        font-family: 'Tahoma', sans-serif; /* Font for service titles */
+        font-size: 1.2em;
+    }
+    #transport p {
+        font-family: 'Roboto', sans-serif; /* Font for descriptions */
+        font-size: 0.9em;
+        color: #555; /* Slightly dim text for descriptions */
+    }
+    #transport .transport-icon {
+        margin-right: 10px; /* Space between icon and text */
+        vertical-align: middle; /* Align icons with text */
+    }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+            </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Rishikesh Camping Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#camping-areas">Camping Areas</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Unforgettable Camping in Rishikesh</h2>
+            <p>Experience the thrill of camping by the Ganges in Rishikesh.</p>
+            <button><a href="Rishikeshpackage.html">Book Your Camping Experience</a></button>
+        </div>
+    </section>
+
+    <section id="camping-areas">
+        <h2>Top 10 Camping Sites in Rishikesh</h2>
+        <div class="camping-cards">
+            <div class="card">
+                <img src="shivpur.png" alt="Camping Site 1">
+                <h3>Site 1: Shivpuri Riverside Camp</h3>
+                <p>Location: Shivpuri</p>
+                <p>Rent: ₹1800/night</p>
+                <p>Riverside camping with adventure activities and scenic views.</p>
+            </div>
+            <div class="card">
+                <img src="Marine.jpg" alt="Camping Site 2">
+                <h3>Site 2: Marine Drive Camp</h3>
+                <p>Location: Marine Drive</p>
+                <p>Rent: ₹2000/night</p>
+                <p>Secluded camping spot by the Ganges, perfect for river rafting.</p>
+            </div>
+            <div class="card">
+                <img src="Rajaji.jpg" alt="Camping Site 3">
+                <h3>Site 3: Rajaji Forest Camp</h3>
+                <p>Location: Rajaji National Park</p>
+                <p>Rent: ₹2500/night</p>
+                <p>Experience camping amidst wildlife in Rajaji National Park.</p>
+            </div>
+            <div class="card">
+                <img src="Phool.jpg" alt="Camping Site 4">
+                <h3>Site 4: Phool Chatti Camp</h3>
+                <p>Location: Phool Chatti</p>
+                <p>Rent: ₹2200/night</p>
+                <p>Quiet campsite by the river, ideal for yoga and meditation.</p>
+            </div>
+            <div class="card">
+                <img src="Neelkanth.jpg" alt="Camping Site 5">
+                <h3>Site 5: Neelkanth Camp</h3>
+                <p>Location: Neelkanth</p>
+                <p>Rent: ₹2800/night</p>
+                <p>Scenic camping spot near Neelkanth Temple.</p>
+            </div>
+            <div class="card">
+                <img src="Ganga.avif" alt="Camping Site 6">
+                <h3>Site 6: Ganga View Camp</h3>
+                <p>Location: Laxman Jhula</p>
+                <p>Rent: ₹2000/night</p>
+                <p>Enjoy stunning Ganga views and serene surroundings.</p>
+            </div>
+            <div class="card">
+                <img src="jungle.jpeg" alt="Camping Site 7">
+                <h3>Site 7: Jungle Vibes Camp</h3>
+                <p>Location: Ghattu Ghat</p>
+                <p>Rent: ₹2600/night</p>
+                <p>Forest camping with adventure sports and scenic trekking.</p>
+            </div>
+            <div class="card">
+                <img src="patna.jpg" alt="Camping Site 8">
+                <h3>Site 8: Patna Waterfall Camp</h3>
+                <p>Location: Patna Waterfall</p>
+                <p>Rent: ₹2300/night</p>
+                <p>Perfect spot near the waterfall with amazing trails.</p>
+            </div>
+            <div class="card">
+                <img src="Rishikesh-river.jpg" alt="Camping Site 9">
+                <h3>Site 9: Jungle River Camp</h3>
+                <p>Location: Brahmpuri</p>
+                <p>Rent: ₹2400/night</p>
+                <p>Exclusive riverbank camping with mesmerizing sunrise views.</p>
+            </div>
+            <div class="card">
+                <img src="mohan-chatti-resort.jpg" alt="Camping Site 10">
+                <h3>Site 10: Mohanchatti Camp</h3>
+                <p>Location: Mohanchatti</p>
+                <p>Rent: ₹2200/night</p>
+                <p>Camp near the famous bungee jumping site with adventure trails.</p>
+            </div>
+        </div>
+    </section>
+<section id="top-sites">
+        <h2>Top Sites to See</h2>
+	    <div class="site-cards">
+            <div class="site-card">
+	     <img src="f.webp">
+
+                <h3>Laxman Jhula</h3>
+                <p>Famous suspension bridge with a stunning view of the Ganges.</p>
+            </div>
+            <div class="site-card">
+             <img src="Ganga-Aarti-at-Triveni-Ghat-Rishikesh.avif">
+                <h3>Triveni Ghat</h3>
+                <p>Popular ghat for evening Ganga Aarti.</p>
+            </div>
+            <div class="site-card">
+		 <img src="Neelkanth-Mahadev-Temple.jpg">
+                <h3>Neelkanth Mahadev Temple</h3>
+                <p>Famous temple with rich history and beautiful surroundings.</p>
+            </div>
+            <div class="site-card">
+		<img src="g.jpg">
+                <h3>Beatles Ashram</h3>
+                <p>Historic ashram visited by the Beatles in the 1960s.</p>
+            </div>
+            <div class="site-card">
+		<img src="waterfall.jpg">
+                <h3>Patna Waterfall</h3>
+                <p>Scenic waterfall, ideal for a trek.</p>
+            </div>
+        </div>
+    </section>
+
+
+   <section id="transport">
+    <h2>Transport Services</h2>
+    <ul>
+        <li>
+            <img src="taxi.png" width="50" height="50" alt="Taxi Icon" class="transport-icon">
+            <strong>Private Taxi Service</strong> - Enjoy a comfortable, private ride directly from Dehradun Airport or Haridwar Railway Station to your campsite.
+            <p>Service Hours: 24/7 | Rates: Starting at ₹2000</p>
+        </li>
+        <li>
+            <img src="car.avif" width="50" height="50" alt="Cab Icon" class="transport-icon">
+            <strong>Shared Cabs</strong> - Ideal for budget travelers looking for shared rides from nearby cities like Delhi and Haridwar.
+            <p>Service Hours: 6:00 AM - 8:00 PM | Rates: Starting at ₹800 per person</p>
+        </li>
+        <li>
+            <img src="airplane.png" width="50" height="50" alt="Airport Icon" class="transport-icon">
+            <strong>Airport Pickup and Drop</strong> - Convenient pickup and drop services from Jolly Grant Airport, Dehradun.
+            <p>Service Hours: On-demand | Rates: Starting at ₹1500</p>
+        </li>
+        <li>
+            <img src="bus.jpg" width="50" height="50" alt="Bus Icon"width="50" height="50" class="transport-icon">
+            <strong>Local Bus Service</strong> - Affordable and regular bus service connecting Rishikesh with Haridwar, Neelkanth, and other attractions.
+            <p>Service Hours: 5:00 AM - 10:00 PM | Rates: ₹50 - ₹200</p>
+        </li>
+        <li>
+            <img src="bike.png" width="50" height="50" alt="Bike Icon" class="transport-icon">
+            <strong>Bicycle Rentals</strong> - Eco-friendly way to explore the town and its serene surroundings.
+            <p>Service Hours: 8:00 AM - 7:00 PM | Rates: ₹100 - ₹500 per day</p>
+        </li>
+        <li>
+            <img src="jeep.png" width="50" height="50" alt="Jeep Icon" class="transport-icon">
+            <strong>Off-Road Jeep Rentals</strong> - Access rugged trails and adventure spots with a robust off-road vehicle.
+            <p>Service Hours: 6:00 AM - 6:00 PM | Rates: ₹2000 - ₹4000 per trip</p>
+        </li>
+        <li>
+            <img src="train.png" width="50" height="50" alt="Train Icon" class="transport-icon">
+            <strong>Train Transfers</strong> - Pickup and drop-off services available for Haridwar and Rishikesh Railway Stations.
+            <p>Service Hours: 24/7 | Rates: Starting at ₹1000</p>
+        </li>
+    </ul>
+</section>
+
+
+    <section id="services">
+        <h2>Additional Services</h2>
+        <ul>
+            <li>Meals: Breakfast, Lunch, Dinner</li>
+            <li>Bonfire and Barbecue Nights</li>
+            <li>Rafting, Bungee Jumping, and Rock Climbing</li>
+            <li>Guided Yoga and Meditation Sessions</li>
+            <li>Photography and Drone Shoots</li>
+            <li>Nature Walks and Bird Watching Tours</li>
+            <li>Kids Zone: Play Area and Activities</li>
+            <li>24/7 Security and First-Aid Support</li>
+            <li>Cultural Shows and Local Music</li>
+            <li>Stargazing and Astronomy Nights</li>
+            <li>Fishing and Kayaking by the River</li>
+            <li>Mountain Biking Adventures</li>
+            <li>Cooking Classes and Local Cuisine Tasting</li>
+            <li>Customizable Packages for Families and Groups</li>
+            <li>Outdoor Movie Nights</li>
+            <li>Health and Wellness Spa Services</li>
+            <li>Camping Equipment Rental</li>
+            <li>Souvenir Shops and Local Crafts</li>
+            <li>Personalized Itinerary Planning</li>
+            <li>Personal Guides for Sightseeing</li>
+        </ul>
+    </section>
+
+   
+    <section id="reviews">
+        <h2>What Our Campers Say</h2>
+        <div class="review-card">
+            <h4>Ajay Verma <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+            <p>“Camping by the Ganges is a lifetime experience! Highly recommend it.”</p>
+        </div>
+        <div class="review-card">
+            <h4>Smita Reddy <span style="color: gold;">★ ★ ★ ★</span></h4>
+            <p>“Loved the river rafting and peaceful camp environment. Beautiful views!”</p>
+        </div>
+        <div class="review-card">
+            <h4>Karan Mehta <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+            <p>“Excellent service! The bonfire and BBQ night were truly amazing.”</p>
+        </div>
+        <div class="review-card">
+            <h4>Neha Sharma <span style="color: gold;">★ ★ ★ ★</span></h4>
+            <p>“Yoga by the river was calming. The staff was very friendly and helpful!”</p>
+        </div>
+        <div class="review-card">
+            <h4>Rohit Singh <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+            <p>“Best camping experience! Perfect location with thrilling activities.”</p>
+        </div>
+        <div class="review-card">
+            <h4>Ankita Bose <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+            <p>“The guided hikes were a great way to explore the area. Loved every moment.”</p>
+        </div>
+        <div class="review-card">
+            <h4>Manish Gupta <span style="color: gold;">★ ★ ★ ★</span></h4>
+            <p>“We enjoyed the cultural shows and the food was fantastic. Will visit again.”</p>
+        </div>
+        <div class="review-card">
+            <h4>Pooja Nair <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+            <p>“Perfect blend of adventure and relaxation. The staff was wonderful!”</p>
+        </div>
+        <div class="review-card">
+            <h4>Rahul Desai <span style="color: gold;">★ ★ ★ ★</span></h4>
+            <p>“Nature walks and bird-watching tours were amazing. Highly recommend!”</p>
+        </div>
+        <div class="review-card">
+            <h4>Shreya Roy <span style="color: gold;">★ ★ ★ ★ ★</span></h4>
+            <p>“Camping in Rishikesh exceeded my expectations! Can’t wait to come back.”</p>
+        </div>
+    </section>
+
+
+    <div id="map"></div>
+
+    <footer>
+        <p>&copy; 2024 Rishikesh Camping Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([30.0869, 78.2676], 13); // Rishikesh coordinates
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Add a marker for Rishikesh
+        var marker = L.marker([30.0869, 78.2676]).addTo(map);
+        marker.bindPopup('<b>Rishikesh!</b><br>Your adventure awaits!').openPopup();
+    </script>
+<section id="contact">
+    <h2>Contact Us - Rishikesh Transport Services</h2>
+    <p>We’re here to assist you with all your transport needs in and around Rishikesh. Reach out to us via any of the following channels:</p>
+    <ul>
+        <li><strong>Phone:</strong> <a href="tel:+919876543210">+91 98765 43210</a></li>
+        <li><strong>Email:</strong> <a href="mailto:info@rishikeshtours.com">info@rishikeshtours.com</a></li>
+        <li><strong>Address:</strong> Transport Office, Tapovan Road, Rishikesh, Uttarakhand, India</li>
+        <li><strong>WhatsApp:</strong> <a href="https://wa.me/919876543210">Chat with us on WhatsApp</a></li>
+        <li><strong>Website:</strong> <a href="https://www.rishikeshtours.com">www.rishikeshtours.com</a></li>
+        <li><strong>Service Hours:</strong> 24/7 Customer Support</li>
+    </ul>
+</section>
+</body>
+</html>

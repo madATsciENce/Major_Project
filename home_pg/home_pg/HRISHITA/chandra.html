@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chandra Tal Lake Camping Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('chandratal-lake-1.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #camping-areas, #transport, #services, #top-sites, #reviews {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .camping-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #transport ul, #services ul, #top-sites ul, #reviews ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-icon {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Chandra Tal Lake Camping Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#camping-areas">Camping Areas</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Experience the Magic of Chandra Tal Lake</h2>
+            <p>Immerse yourself in the breathtaking beauty of Chandra Tal Lake.</p>
+            <button>Book Your Camping Experience</button>
+        </div>
+    </section>
+
+    <section id="camping-areas">
+    <h2>Top Camping Sites near Chandra Tal Lake</h2>
+    <div class="camping-cards">
+        <div class="card">
+            <img src="ct base.jpg" alt="Camping Site 1">
+            <h3>Site 1: Chandra Tal Base Camp</h3>
+            <p>Location: Near Chandra Tal Lake</p>
+            <p>Rent: ₹3000/night</p>
+            <p>Scenic camping site with mesmerizing views of the lake.</p>
+        </div>
+        <div class="card">
+            <img src="ct lakeside.jpg" alt="Camping Site 2">
+            <h3>Site 2: Lakeside Camp</h3>
+            <p>Location: Adjacent to Chandra Tal</p>
+            <p>Rent: ₹3500/night</p>
+            <p>Exclusive camp offering breathtaking sunsets by the lake.</p>
+        </div>
+        <div class="card">
+            <img src="ct moonlight.cms" alt="Camping Site 3">
+            <h3>Site 3: Moonlight Camp</h3>
+            <p>Location: Chandra Tal area</p>
+            <p>Rent: ₹3200/night</p>
+            <p>Special night camping experience under the stars.</p>
+        </div>
+        <div class="card">
+            <img src="ct adventure.jpg" alt="Camping Site 4">
+            <h3>Site 4: Adventure Camp</h3>
+            <p>Location: Near trekking routes</p>
+            <p>Rent: ₹3400/night</p>
+            <p>Perfect for adventure enthusiasts and trekkers.</p>
+        </div>
+        <div class="card">
+            <img src="ct tr.jpg" alt="Camping Site 5">
+            <h3>Site 5: Tranquil Retreat</h3>
+            <p>Location: Overlooking the lake</p>
+            <p>Rent: ₹3600/night</p>
+            <p>A peaceful site ideal for relaxation and meditation.</p>
+        </div>
+        <div class="card">
+            <img src="mvc.webp" alt="Camping Site 6">
+            <h3>Site 6: Mystic Valley Camp</h3>
+            <p>Location: Hidden valley nearby</p>
+            <p>Rent: ₹3800/night</p>
+            <p>A secluded site surrounded by majestic mountains.</p>
+        </div>
+        <div class="card">
+            <img src="spc.webp" alt="Camping Site 7">
+            <h3>Site 7: Sunrise Point Camp</h3>
+            <p>Location: Eastern slopes of Chandra Tal</p>
+            <p>Rent: ₹3700/night</p>
+            <p>Stunning sunrise views, ideal for early risers.</p>
+        </div>
+        <div class="card">
+            <img src="eco.jpg" alt="Camping Site 8">
+            <h3>Site 8: Eco-Friendly Camp</h3>
+            <p>Location: Eco-sensitive area</p>
+            <p>Rent: ₹3900/night</p>
+            <p>Stay in harmony with nature, using sustainable practices.</p>
+        </div>
+
+    </div>
+</section>
+
+
+    <section id="top-sites">
+    <h2>Top Sites to See near Chandra Tal</h2>
+    <div class="site-cards">
+        <div class="site-card">
+            <img src="ct lake.jpeg" alt="Chandra Tal Lake">
+            <h3>Chandra Tal Lake</h3>
+            <p>The crescent-shaped lake known for its stunning blue waters.</p>
+        </div>
+        <div class="site-card">
+            <img src="bara pass.jpg" alt="Baralacha La Pass">
+            <h3>Baralacha La Pass</h3>
+            <p>A high-altitude pass with incredible panoramic views.</p>
+        </div>
+        <div class="site-card">
+            <img src="stl.jpg" alt="Suraj Tal Lake">
+            <h3>Suraj Tal Lake</h3>
+            <p>A serene lake ideal for photography and relaxation.</p>
+        </div>
+        <div class="site-card">
+            <img src="llp.jpg" alt="Lachulung La Pass">
+            <h3>Lachulung La Pass</h3>
+            <p>Offers beautiful views of the surrounding landscapes.</p>
+        </div>
+        <div class="site-card">
+            <img src="kunzum.jpg">
+            <h3>Kunzum La Pass</h3>
+            <p>A picturesque mountain pass with stunning views of snow-capped peaks.</p>
+        </div>
+        <div class="site-card">
+            <img src="cbr.jpeg" alt="Chandra Bhaga River">
+            <h3>Chandra Bhaga River</h3>
+            <p>A scenic river offering beautiful views and peaceful surroundings.</p>
+        </div>
+        <div class="site-card">
+            <img src="keylong.jpg">
+            <h3>Keylong</h3>
+            <p>The administrative center of Lahaul, rich in culture and tradition.</p>
+        </div>
+        <div class="site-card">
+            <img src="shashur.jpeg" alt="Shashur Monastery">
+            <h3>Shashur Monastery</h3>
+            <p>Famous for its beautiful architecture and panoramic views of the valley.</p>
+        </div>
+    </div>
+</section>
+
+
+    <section id="transport">
+    <h2>Transport Services</h2>
+    <div class="transport-cards">
+        <div class="transport-card">
+            <img src="taxi logo.jpg" width="50" height="50">
+            <h3>Private Taxi Service</h3>
+            <p>Comfortable rides from Manali to Chandra Tal.</p>
+            <p><strong>Service Hours:</strong> 24/7</p>
+            <p><strong>Rates:</strong> Starting at ₹6000</p>
+        </div>
+        <div class="transport-card">
+            <img src="bus.jpg"width="50" height="50">
+            <h3>Regular Bus Service</h3>
+            <p>Economical transport options from Manali.</p>
+            <p><strong>Service Hours:</strong> Daily</p>
+            <p><strong>Rates:</strong> Starting at ₹1500</p>
+        </div>
+        <div class="transport-card">
+            <img src="car.avif" alt="Minivan Icon"width="50" height="50">
+            <h3>Minivan Rental</h3>
+            <p>Ideal for group travelers, accommodates up to 10 people.</p>
+            <p><strong>Service Hours:</strong> 24/7</p>
+            <p><strong>Rates:</strong> Starting at ₹8000</p>
+        </div>
+        <div class="transport-card">
+            <img src="shared taxi.webp" alt="Shared Taxi Icon"width="50" height="50">
+            <h3>Shared Taxi Service</h3>
+            <p>Cost-effective shared rides from Manali to Chandra Tal.</p>
+            <p><strong>Service Hours:</strong> Daily</p>
+            <p><strong>Rates:</strong> Starting at ₹3500</p>
+        </div>
+        <div class="transport-card">
+            <img src="bike.webp" alt="Bike Rental Icon"width="50" height="50">
+            <h3>Bike Rentals</h3>
+            <p>Explore the region on your own terms with bike rentals.</p>
+            <p><strong>Service Hours:</strong> 24/7</p>
+            <p><strong>Rates:</strong> Starting at ₹1000/day</p>
+        </div>
+        <div class="transport-card">
+            <img src="helicopter.jpg" alt="Helicopter Service Icon"width="50" height="50">
+            <h3>Helicopter Service</h3>
+            <p>Luxury transport option for a quick and scenic journey.</p>
+            <p><strong>Service Hours:</strong> By appointment</p>
+            <p><strong>Rates:</strong> Starting at ₹25000</p>
+        </div>
+        <div class="transport-card">
+            <img src="shuttle.jpg" alt="Shuttle Service Icon"width="50" height="50">
+            <h3>Shuttle Services</h3>
+            <p>Convenient shuttles operating at scheduled times.</p>
+            <p><strong>Service Hours:</strong> Multiple departures daily</p>
+            <p><strong>Rates:</strong> Starting at ₹2000</p>
+        </div>
+    </div>
+</section>
+
+
+    <section id="services">
+    <h2>Services Offered</h2>
+    <ul>
+        <li>Guided Trekking Tours</li>
+        <li>Meal Plans (Breakfast, Lunch, Dinner)</li>
+        <li>Camping Gear Rentals</li>
+        <li>Firewood & Cooking Facilities</li>
+        <li>Photography Workshops</li>
+        <li>Bonfire Nights</li>
+        <li>Adventure Sports (Paragliding, River Rafting)</li>
+        <li>Wildlife Safaris</li>
+        <li>Yoga and Meditation Sessions</li>
+        <li>Local Culture Workshops (Crafts, Cooking)</li>
+        <li>Transportation Arrangements</li>
+        <li>Safety and First Aid Services</li>
+    </ul>
+</section>
+
+    <section id="reviews">
+    <h2>Customer Reviews</h2>
+    <div class="review-card">
+        <p><strong>Aarav Sharma</strong> <span class="rating">★★★★★</span>: "An unforgettable experience at Chandra Tal! The scenery is simply breathtaking!"</p>
+    </div>
+    <div class="review-card">
+        <p><strong>Sara Khan</strong> <span class="rating">★★★★☆</span>: "The camping sites are well-maintained and the services are excellent. Highly recommended!"</p>
+    </div>
+    <div class="review-card">
+        <p><strong>Rahul Mehta</strong> <span class="rating">★★★★★</span>: "The lake is a hidden gem! A perfect escape from city life!"</p>
+    </div>
+    <div class="review-card">
+        <p><strong>Priya Verma</strong> <span class="rating">★★★★☆</span>: "Amazing experience! The night sky is mesmerizing, and the campfire was a highlight!"</p>
+    </div>
+    <div class="review-card">
+        <p><strong>Vikram Singh</strong> <span class="rating">★★★★★</span>: "Perfect getaway! The guides were knowledgeable and made our trek unforgettable!"</p>
+    </div>
+    <div class="review-card">
+        <p><strong>Neha Joshi</strong> <span class="rating">★★★★☆</span>: "Had a great time camping here. The amenities were good, and the location is stunning!"</p>
+    </div>
+    <div class="review-card">
+        <p><strong>Arjun Patel</strong> <span class="rating">★★★★★</span>: "One of the best experiences of my life! Will definitely return!"</p>
+    </div>
+</section>
+
+
+    <section id="map">
+        <h2>Location Map</h2>
+        <div id="map"></div>
+    </section>
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or need more information, feel free to reach out to us!</p>
+    <div class="contact-details">
+        <h3>Get in Touch</h3>
+        <p><strong>Email:</strong> info@chandratallakeservices.com</p>
+        <p><strong>Phone:</strong> +91 98765 43210</p>
+        <p><strong>Address:</strong> Chandra Tal Camping Site, Lahaul and Spiti, Himachal Pradesh, India</p>
+    </div>
+    <div class="contact-form">
+        <h3>Contact Form</h3>
+        <form action="#" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+
+    <footer>
+        <p>&copy; 2024 Chandra Tal Lake Camping Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([32.1954, 77.1856], 13); // Coordinates of Chandra Tal Lake
+
+        // Add a tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker for Chandra Tal Lake
+        L.marker([32.1954, 77.1856]).addTo(map)
+            .bindPopup('Chandra Tal Lake')
+            .openPopup();
+    </script>
+</body>
+</html>

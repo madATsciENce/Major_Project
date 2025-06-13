@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munnar Camping Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #35424a;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('munnar.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45b962;
+        }
+
+        section {
+            padding: 50px 20px;
+        }
+
+        .camping-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #transport ul, #services ul, #reviews ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #35424a;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-icon {
+            width: 50px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Munnar Camping Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#camping-areas">Camping Stays</a></li>
+                    <li><a href="#top-sites">Sites to See</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#map-section">Map</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Experience the Serenity of Munnar</h2>
+            <p>Immerse yourself in the lush greenery and breathtaking views.</p>
+            <button>Book Your Camping Stay</button>
+        </div>
+    </section>
+
+    <section id="camping-areas">
+        <h2>Top 10 Camping Stays in Munnar</h2>
+        <div class="camping-cards">
+            <div class="card">
+                <img src="552280253.jpg" alt="Camp 1">
+                <h3>Hill View Camping</h3>
+                <p>Location: Near Tea Gardens</p>
+                <p>Rent: ₹3500/night</p>
+                <p>Enjoy stunning views of the hills and tea plantations.</p>
+            </div>
+            <div class="card">
+                <img src="84307738.jpg" alt="Camp 2">
+                <h3>Tranquil Valley Camp</h3>
+                <p>Location: Munnar Town</p>
+                <p>Rent: ₹3200/night</p>
+                <p>Experience peace amidst lush greenery.</p>
+            </div>
+            <div class="card">
+                <img src="spice-munnar-camping-munnar-lodging-services-3m3bua38ja-250.avif" alt="Camp 9">
+                <h3>Wildlife Sanctuary Camp</h3>
+                <p>Location: Munnar Wildlife Sanctuary</p>
+                <p>Rent: ₹3400/night</p>
+                <p>Explore the rich wildlife and natural beauty.</p>
+            </div>
+            <div class="card">
+                <img src="luxeglamp-Projects-Munnar.jpg" alt="Camp 10">
+                <h3>Sunset View Camp</h3>
+                <p>Location: Pallivasal</p>
+                <p>Rent: ₹3200/night</p>
+                <p>Experience breathtaking sunsets from your camp.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top 10 Sites to See in Munnar</h2>
+        <div class="site-cards">
+            <div class="site-card">
+                <img src="eravikulam_28072018105517.jpg" alt="Site 1">
+                <h3>Eravikulam National Park</h3>
+                <p>Home to the Nilgiri Tahr and beautiful landscapes.</p>
+            </div>
+            <div class="site-card">
+                <img src="another-side-view-of.jpg" alt="Site 2">
+                <h3>Mattupetty Dam</h3>
+                <p>Enjoy boating and stunning views of the hills.</p>
+            </div>
+            <div class="site-card">
+                <img src="Le_musée_du_thé_(Munnar,_Inde)_(13694719014).jpg" alt="Site 3">
+                <h3>Tea Museum</h3>
+                <p>Learn about tea processing and its history in Munnar.</p>
+            </div>
+            <div class="site-card">
+                <img src="attukal-waterfalls-munnar-india-tourism-photo-gallery.jpg" alt="Site 4">
+                <h3>Attukal Waterfalls</h3>
+                <p>A beautiful waterfall, perfect for photography.</p>
+            </div>
+            <div class="site-card">
+                <img src="Chinnakanal waterfalls.jpg" alt="Site 5">
+                <h3>Chinnakanal Waterfalls</h3>
+                <p>Another scenic waterfall to enjoy the natural beauty.</p>
+            </div>
+            <div class="site-card">
+                <img src="kolukkumalai-tour.jpg" alt="Site 6">
+                <h3>Kolukkumalai Tea Estate</h3>
+                <p>Highest tea plantation in the world.</p>
+            </div>
+            <div class="site-card">
+                <img src="lockhart-lockheart-gap-munnar-tourism-entry-fee-timings-holidays-reviews-header.jpg" alt="Site 7">
+                <h3>Lockhart Gap</h3>
+                <p>Offers panoramic views of the Western Ghats.</p>
+            </div>
+                   </div>
+    </section>
+
+    <section id="transport">
+    <h2>Transport Options</h2>
+    <ul>
+        <li>
+            <img src="taxi.png" class="transport-icon" alt="Car">
+            <strong>Private Cars and Taxis:</strong> 
+            <p>For a more comfortable journey, hiring a private car or taxi is a great option. Many local taxi services provide pick-up and drop-off from major cities like Kochi and Kottayam. Make sure to book in advance during peak season.</p>
+        </li>
+        <li>
+            <img src="bus.png" class="transport-icon" alt="Bus">
+            <strong>State-run Buses:</strong>
+            <p>Kerala State Road Transport Corporation (KSRTC) operates regular bus services to Munnar from various cities including Kochi, Kottayam, and Ernakulam. Buses are economical and provide a scenic route through the hills.</p>
+        </li>
+        <li>
+            <img src="train.png" class="transport-icon" alt="Train">
+            <strong>Nearest Railway Station: Ernakulam:</strong>
+            <p>The nearest major railway station to Munnar is Ernakulam Junction (approximately 130 km away). From there, you can hire a taxi or take a bus to reach Munnar. Several trains connect Ernakulam to major cities in India.</p>
+        </li>
+        <li>
+            <img src="airplane.png" class="transport-icon" alt="Airport">
+            <strong>Nearest Airport: Cochin International Airport:</strong>
+            <p>The closest airport to Munnar is Cochin International Airport (COK), about 110 km away. From the airport, you can hire a taxi or book a shuttle service to Munnar. The drive takes approximately 3-4 hours and offers stunning views.</p>
+        </li>
+    </ul>
+</section>
+
+
+    <section id="services">
+        <h2>Services We Provide</h2>
+        <ul>
+            <li>Camping Gear Rental</li>
+            <li>Guided Nature Walks</li>
+            <li>Adventure Sports (Trekking, Rock Climbing)</li>
+            <li>Meal Packages (Local Cuisine)</li>
+            <li>Transportation Arrangement</li>
+        </ul>
+    </section>
+
+    <section id="reviews">
+    <h2>What Our Guests Say</h2>
+    <div class="review-card">
+        <p>"An unforgettable experience! The views were breathtaking!" - <strong>Aditi</strong></p>
+        <p>Rating: ★★★★★</p>
+    </div>
+    <div class="review-card">
+        <p>"Loved every moment of our stay in Munnar. Highly recommend!" - <strong>Rajesh</strong></p>
+        <p>Rating: ★★★★★</p>
+    </div>
+    <div class="review-card">
+        <p>"The perfect getaway from city life. We will be back!" - <strong>Neha</strong></p>
+        <p>Rating: ★★★★★</p>
+    </div>
+    <div class="review-card">
+        <p>"A serene experience amidst the tea gardens. Nature at its best!" - <strong>Karan</strong></p>
+        <p>Rating: ★★★★☆</p>
+    </div>
+    <div class="review-card">
+        <p>"Fantastic hospitality and beautiful scenery. Worth every penny!" - <strong>Pooja</strong></p>
+        <p>Rating: ★★★★★</p>
+    </div>
+    <div class="review-card">
+        <p>"The campfires at night were magical! A great escape!" - <strong>Vikram</strong></p>
+        <p>Rating: ★★★★☆</p>
+    </div>
+    <div class="review-card">
+        <p>"A lovely place to unwind. Could improve on the food options." - <strong>Riya</strong></p>
+        <p>Rating: ★★★☆☆</p>
+    </div>
+    <div class="review-card">
+        <p>"Overall, a delightful experience! The treks were exhilarating!" - <strong>Arjun</strong></p>
+        <p>Rating: ★★★★☆</p>
+    </div>
+</section>
+
+
+    <section id="map-section">
+        <h2>Explore Munnar</h2>
+        <div id="map"></div>
+    </section>
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or need further information, feel free to reach out! We’re here to help you plan your perfect getaway in Munnar.</p>
+    <div>
+        <h3>Contact Information</h3>
+        <p>Email: <a href="mailto:info@munnarcamping.com">info@munnarcamping.com</a></p>
+        <p>Phone: <a href="tel:+911234567890">+91 123 456 7890</a></p>
+        <p>Address: Munnar Camping Co., Tea Garden Road, Munnar, Kerala, India</p>
+    </div>
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+    <footer>
+        <p>&copy; 2024 Munnar Camping Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // JavaScript for Leaflet Map
+        var map = L.map('map').setView([9.8346, 77.2586], 10);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        L.marker([9.8346, 77.2586]).addTo(map)
+            .bindPopup('Munnar: A Beautiful Camping Destination!')
+            .openPopup();
+    </script>
+</body>
+</html>

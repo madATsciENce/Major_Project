@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eravikulam National Park Stay Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('https://via.placeholder.com/1500x600?text=Eravikulam+National+Park');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #hotels, #transport, #services, #map, #reviews {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #transport ul, #services ul, #reviews ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-icon {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Eravikulam National Park Stay Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Explore the Wonders of Eravikulam National Park</h2>
+            <p>Experience breathtaking landscapes and unique wildlife in the heart of the Western Ghats.</p>
+            <button>Explore Hotels & Stays</button>
+        </div>
+    </section>
+
+    <section id="hotels">
+        <h2>Top Hotels and Homestays near Eravikulam National Park</h2>
+        <div class="hotel-cards">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+1" alt="Hotel 1">
+                <h3>Nature's Nest Resort</h3>
+                <p>Location: Munnar</p>
+                <p>Rent: ₹8000/night</p>
+                <p>Luxury resort with scenic views and guided nature walks.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+2" alt="Hotel 2">
+                <h3>Munnar Hills Homestay</h3>
+                <p>Location: Near Eravikulam Park Entrance</p>
+                <p>Rent: ₹4500/night</p>
+                <p>Cozy homestay with local hospitality and delicious food.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+3" alt="Hotel 3">
+                <h3>Eco Lodge Munnar</h3>
+                <p>Location: Eco-sensitive Zone</p>
+                <p>Rent: ₹5500/night</p>
+                <p>Eco-friendly lodge with sustainable practices and trekking options.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+4" alt="Hotel 4">
+                <h3>Hilltop Cottage Stay</h3>
+                <p>Location: Munnar Hill Station</p>
+                <p>Rent: ₹4800/night</p>
+                <p>Charming cottage with breathtaking hill views.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+5" alt="Hotel 5">
+                <h3>Green Valley Resort</h3>
+                <p>Location: Near Tea Plantations</p>
+                <p>Rent: ₹6000/night</p>
+                <p>Beautiful resort surrounded by lush tea gardens.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+6" alt="Hotel 6">
+                <h3>Cloud 9 Homestay</h3>
+                <p>Location: Munnar</p>
+                <p>Rent: ₹5200/night</p>
+                <p>Homely atmosphere with stunning views of the valley.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+7" alt="Hotel 7">
+                <h3>Spice Garden Resort</h3>
+                <p>Location: Near Spice Plantations</p>
+                <p>Rent: ₹5300/night</p>
+                <p>Experience spice plantations and guided nature tours.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+8" alt="Hotel 8">
+                <h3>Munnar Valley Resort</h3>
+                <p>Location: Munnar</p>
+                <p>Rent: ₹5900/night</p>
+                <p>Luxury stay with amenities and adventure activities.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+9" alt="Hotel 9">
+                <h3>Tea Garden Homestay</h3>
+                <p>Location: Munnar</p>
+                <p>Rent: ₹4600/night</p>
+                <p>Stay amidst tea gardens with local experiences.</p>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Hotel+10" alt="Hotel 10">
+                <h3>Royal Mountain Resort</h3>
+                <p>Location: Munnar</p>
+                <p>Rent: ₹7000/night</p>
+                <p>Elegant resort with breathtaking mountain views.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Available Services</h2>
+        <ul>
+            <li>Guided Nature Walks</li>
+            <li>Wildlife Photography Tours</li>
+            <li>Local Cuisine Cooking Classes</li>
+            <li>Yoga and Meditation Sessions</li>
+            <li>Transportation Services</li>
+        </ul>
+    </section>
+
+    <section id="transport">
+        <h2>Transport Options</h2>
+        <ul>
+            <li><img src="https://via.placeholder.com/20" class="transport-icon" alt="Bus">Local Buses: Regular services to Munnar and surrounding areas.</li>
+            <li><img src="https://via.placeholder.com/20" class="transport-icon" alt="Taxi">Taxis: Easily available for hire in Munnar.</li>
+            <li><img src="https://via.placeholder.com/20" class="transport-icon" alt="Rental Car">Car Rentals: Various options for self-drive vehicles.</li>
+            <li><img src="https://via.placeholder.com/20" class="transport-icon" alt="Bicycle">Bicycle Rentals: Eco-friendly transportation for local exploration.</li>
+        </ul>
+    </section>
+
+    <section id="map">
+        <h2>Location Map</h2>
+        <div id="map"></div>
+    </section>
+
+    <section id="reviews">
+        <h2>Visitor Reviews</h2>
+        <div class="review-card">
+            <h4>John Doe</h4>
+            <p>“A breathtaking experience! The wildlife and landscapes are unforgettable.”</p>
+        </div>
+        <div class="review-card">
+            <h4>Jane Smith</h4>
+            <p>“The best nature stay I've had! Highly recommend the guided tours.”</p>
+        </div>
+        <div class="review-card">
+            <h4>Mary Johnson</h4>
+            <p>“Wonderful hospitality at the homestay. I felt right at home!”</p>
+        </div>
+    </section>
+
+    <footer>
+        <h2>Contact Us</h2>
+        <p>For inquiries, please email us at: info@eravikulamnationalpark.com</p>
+        <p>Phone: +91 12345 67890</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // JavaScript for the map
+        var map = L.map('map').setView([10.0909, 77.0588], 10); // Coordinates for Eravikulam National Park
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        L.marker([10.0909, 77.0588]).addTo(map)
+            .bindPopup('Eravikulam National Park')
+            .openPopup();
+    </script>
+
+</body>
+</html>

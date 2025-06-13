@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himachal Pradesh Mountain Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('HIMACHAL-PRADESH.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #hotels, #top-sites, #services, #transport, #reviews, #contact {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Himachal Pradesh Mountain Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Explore the Serenity of Himachal Pradesh</h2>
+            <p>Discover the mesmerizing landscapes and culture.</p>
+            <button>Plan Your Visit</button>
+        </div>
+    </section>
+
+    <section id="hotels">
+        <h2>Top Hotels & Homestays in Himachal Pradesh</h2>
+        <div class="hotel-cards">
+            <!-- Hotel 1 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Manali+Hotel+1" alt="Hotel 1">
+                <h3>Mountain Bliss Resort</h3>
+                <p>Location: Manali</p>
+                <p>Rent: ₹5500/night</p>
+            </div>
+            <!-- Hotel 2 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Dharamshala+Hotel+2" alt="Hotel 2">
+                <h3>Serene Valley Stay</h3>
+                <p>Location: Dharamshala</p>
+                <p>Rent: ₹5000/night</p>
+            </div>
+            <!-- Hotel 3 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Shimla+Hotel+3" alt="Hotel 3">
+                <h3>Evergreen Cottage</h3>
+                <p>Location: Shimla</p>
+                <p>Rent: ₹4000/night</p>
+            </div>
+            <!-- Hotel 4 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Kasol+Hotel+4" alt="Hotel 4">
+                <h3>Riverside Homestay</h3>
+                <p>Location: Kasol</p>
+                <p>Rent: ₹4500/night</p>
+            </div>
+            <!-- Hotel 5 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Dalhousie+Hotel+5" alt="Hotel 5">
+                <h3>Hilltop Retreat</h3>
+                <p>Location: Dalhousie</p>
+                <p>Rent: ₹5200/night</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top Sites to See in Himachal Pradesh</h2>
+        <div class="site-cards">
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Rohtang+Pass" alt="Rohtang Pass">
+                <h3>Rohtang Pass</h3>
+                <p>Gateway to the Himalayas with stunning views.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Solang+Valley" alt="Solang Valley">
+                <h3>Solang Valley</h3>
+                <p>Adventure hotspot for paragliding and skiing.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Dalai+Lama+Temple" alt="Dalai Lama Temple">
+                <h3>Dalai Lama Temple</h3>
+                <p>Spiritual center in Dharamshala.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Shimla+Mall+Road" alt="Shimla Mall Road">
+                <h3>Shimla Mall Road</h3>
+                <p>A perfect blend of shopping and scenic views.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Spiti+Valley" alt="Spiti Valley">
+                <h3>Spiti Valley</h3>
+                <p>A remote desert mountain valley perfect for solitude.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Chail+Palace" alt="Chail Palace">
+                <h3>Chail Palace</h3>
+                <p>A royal retreat amidst nature.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Great+Himalayan+National+Park" alt="GHNP">
+                <h3>Great Himalayan National Park</h3>
+                <p>A UNESCO World Heritage Site with rich biodiversity.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Bir+Billing" alt="Bir Billing">
+                <h3>Bir Billing</h3>
+                <p>Known for its world-famous paragliding spots.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Triund+Trek" alt="Triund Trek">
+                <h3>Triund Trek</h3>
+                <p>A short trek with mesmerizing views.</p>
+            </div>
+            <div class="site-card">
+                <img src="https://via.placeholder.com/300x150?text=Kullu+Manali" alt="Kullu">
+                <h3>Kullu Manali</h3>
+                <p>The ultimate destination for honeymooners.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Services</h2>
+        <p>We offer customized travel packages, adventure tours, and more!</p>
+    </section>
+
+    <section id="transport">
+        <h2>Transport Options</h2>
+        <ul>
+            <li>Airport: Bhuntar (Kullu-Manali Airport)</li>
+            <li>Railway: Kalka Railway Station</li>
+            <li>Bus: Well-connected state transport buses</li>
+            <li>Local Transport: Cabs and rental bikes available</li>
+        </ul>
+    </section>
+
+    <section id="reviews">
+        <h2>Reviews</h2>
+        <p>“An unforgettable journey in Himachal! The service was excellent!” - 5/5</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: info@himachalexperience.com</p>
+        <p>Phone: +91-123-456-7890</p>
+    </section>
+
+    <section id="map">
+        <h2>Interactive Himachal Pradesh Map</h2>
+        <div id="map"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Himachal Pradesh Mountain Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([32.2, 77.2], 8);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        L.marker([32.24, 77.19]).addTo(map).bindPopup('Manali');
+        L.marker([32.22, 76.32]).addTo(map).bindPopup('Dharamshala');
+        L.marker([31.1, 77.17]).addTo(map).bindPopup('Shimla');
+    </script>
+</body>
+</html>

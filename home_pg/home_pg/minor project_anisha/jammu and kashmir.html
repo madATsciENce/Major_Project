@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jammu and Kashmir Mountain Experience</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('J&K.jpeg');
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5dade2;
+        }
+
+        #hotels, #top-sites, #services, #transport, #reviews, #contact {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1>Jammu and Kashmir Mountain Experience</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Discover the Paradise on Earth</h2>
+            <p>Explore the pristine beauty of Jammu and Kashmir.</p>
+            <button>Book Your Stay</button>
+        </div>
+    </section>
+
+    <section id="hotels">
+        <h2>Top Hotels & Homestays in Jammu and Kashmir</h2>
+        <div class="hotel-cards">
+            <!-- Hotel 1 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Srinagar+Houseboat" alt="Hotel 1">
+                <h3>Shikara Stay</h3>
+                <p>Location: Dal Lake, Srinagar</p>
+                <p>Rent: ₹6000/night</p>
+            </div>
+            <!-- Hotel 2 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Gulmarg+Resort" alt="Hotel 2">
+                <h3>Snowland Resort</h3>
+                <p>Location: Gulmarg</p>
+                <p>Rent: ₹5500/night</p>
+            </div>
+            <!-- Hotel 3 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Sonmarg+Lodge" alt="Hotel 3">
+                <h3>Glacier Retreat</h3>
+                <p>Location: Sonmarg</p>
+                <p>Rent: ₹5000/night</p>
+            </div>
+            <!-- Hotel 4 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Pahalgam+Cottage" alt="Hotel 4">
+                <h3>Valley View Cottage</h3>
+                <p>Location: Pahalgam</p>
+                <p>Rent: ₹4800/night</p>
+            </div>
+            <!-- Hotel 5 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150?text=Leh+Ladakh+Stay" alt="Hotel 5">
+                <h3>Alpine Inn</h3>
+                <p>Location: Leh</p>
+                <p>Rent: ₹5200/night</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="top-sites">
+        <h2>Top Sites to See in Jammu and Kashmir</h2>
+        <div class="site-cards">
+            <div class="site-card"><img src="https://via.placeholder.com/300x150?text=Dal+Lake" alt="Dal Lake"><h3>Dal Lake</h3><p>Famous for its houseboats and Shikaras.</p></div>
+            <div class="site-card"><img src="https://via.placeholder.com/300x150?text=Gulmarg" alt="Gulmarg"><h3>Gulmarg</h3><p>A haven for skiers and adventure enthusiasts.</p></div>
+            <div class="site-card"><img src="https://via.placeholder.com/300x150?text=Sonmarg" alt="Sonmarg"><h3>Sonmarg</h3><p>Known for its scenic beauty and trekking routes.</p></div>
+            <div class="site-card"><img src="https://via.placeholder.com/300x150?text=Amarnath+Cave" alt="Amarnath Cave"><h3>Amarnath Cave</h3><p>A sacred pilgrimage site for Hindus.</p></div>
+            <div class="site-card"><img src="https://via.placeholder.com/300x150?text=Pahalgam" alt="Pahalgam"><h3>Pahalgam</h3><p>Offers serene landscapes and riverside views.</p></div>
+            <div class="site-card"><img src="https://via.placeholder.com/300x150?text=Betaab+Valley" alt="Betaab Valley"><h3>Betaab Valley</h3><p>A valley straight out of a Bollywood movie.</p></div>
+            <div class="site-card"><img src="https://via.placeholder.com/300x150?text=Leh+Palace" alt="Leh Palace"><h3>Leh Palace</h3><p>Historic architecture in Ladakh.</p></div>
+            <div class="site-card"><img src="https://via.placeholder.com/300x150?text=Magnetic+Hill" alt="Magnetic Hill"><h3>Magnetic Hill</h3><p>A gravity-defying natural wonder.</p></div>
+            <div class="site-card"><img src="https://via.placeholder.com/300x150?text=Pangong+Lake" alt="Pangong Lake"><h3>Pangong Lake</h3><p>Crystal clear blue waters shared with Tibet.</p></div>
+            <div class="site-card"><img src="https://via.placeholder.com/300x150?text=Zanskar+Valley" alt="Zanskar Valley"><h3>Zanskar Valley</h3><p>Adventure hotspot for trekking and rafting.</p></div>
+        </div>
+    </section>
+
+    <section id="map">
+        <h2>Interactive Jammu and Kashmir Map</h2>
+        <div id="map"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Jammu and Kashmir Mountain Experience. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize map
+        const map = L.map('map').setView([34.083658, 74.797368], 8);
+
+        // Add map tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add markers
+        L.marker([34.083658, 74.797368]).addTo(map).bindPopup('Srinagar').openPopup();
+        L.marker([34.0535, 74.8107]).addTo(map).bindPopup('Dal Lake');
+        L.marker([34.0489, 74.8634]).addTo(map).bindPopup('Gulmarg');
+    </script>
+</body>
+</html>

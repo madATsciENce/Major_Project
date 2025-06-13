@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coonoor Mountain Adventure</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #eef2f3;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            height: 600px;
+            background-color: #222;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            display: none;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        .carousel button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .carousel button.prev {
+            left: 20px;
+        }
+
+        .carousel button.next {
+            right: 20px;
+        }
+
+        section {
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .hotel-cards, .site-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card, .site-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img, .site-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #map {
+            height: 400px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <div class="navbar">
+            <h1>Coonoor Mountain Adventure</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#hotels">Hotels & Homestays</a></li>
+                    <li><a href="#top-sites">Top Sites to See</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#transport">Transport</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Carousel Section -->
+    <section id="home">
+    <div class="hero" style="background-image: url('coonoor.webp'); background-size: cover; color: white; padding: 100px 20px; text-align: center;">
+        <h2>Discover the Beauty of Coonoor Mountains</h2>
+        <p>Experience the tranquil hills, lush tea gardens, and stunning vistas of Coonoor.</p>
+        <button style="background-color: #3498db; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-top: 10px;">Book Your Stay</button>
+    </div>
+</section>
+
+    <!-- Hotels Section -->
+    <section id="hotels">
+    <h2>Top Hotels & Homestays in Coonoor</h2>
+    <div class="hotel-cards">
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Hotel+1" alt="Hotel 1">
+            <h3>Windflower Coonoor</h3>
+            <p>Location: Coonoor</p>
+            <p>Rent: ₹5000/night</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Hotel+2" alt="Hotel 2">
+            <h3>Savoy Hotel</h3>
+            <p>Location: Coonoor</p>
+            <p>Rent: ₹6000/night</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Hotel+3" alt="Hotel 3">
+            <h3>Neemrana's Wallwood Garden</h3>
+            <p>Location: Coonoor</p>
+            <p>Rent: ₹4500/night</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Hotel+4" alt="Hotel 4">
+            <h3>Tea Nest</h3>
+            <p>Location: Coonoor</p>
+            <p>Rent: ₹3500/night</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Hotel+5" alt="Hotel 5">
+            <h3>Hotel Vivek</h3>
+            <p>Location: Coonoor</p>
+            <p>Rent: ₹3000/night</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Hotel+6" alt="Hotel 6">
+            <h3>The Gateway Hotel</h3>
+            <p>Location: Coonoor</p>
+            <p>Rent: ₹7000/night</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Hotel+7" alt="Hotel 7">
+            <h3>Kurumba Village Resort</h3>
+            <p>Location: Coonoor</p>
+            <p>Rent: ₹6000/night</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Hotel+8" alt="Hotel 8">
+            <h3>La Villa</h3>
+            <p>Location: Coonoor</p>
+            <p>Rent: ₹4000/night</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Hotel+9" alt="Hotel 9">
+            <h3>Glyngarth Resort</h3>
+            <p>Location: Coonoor</p>
+            <p>Rent: ₹5500/night</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Hotel+10" alt="Hotel 10">
+            <h3>Brightlands Estate</h3>
+            <p>Location: Coonoor</p>
+            <p>Rent: ₹5000/night</p>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Top Sites Section -->
+    <section id="top-sites">
+    <h2>Top Sites to See in Coonoor</h2>
+    <div class="site-cards">
+        <div class="site-card">
+            <img src="ds1.jpg" alt="Dolphin's Nose">
+            <h3>Dolphin's Nose</h3>
+            <p>A scenic viewpoint offering panoramic views of the Nilgiri hills and valleys.</p>
+        </div>
+        <div class="site-card">
+            <img src="sims.jpg" alt="Sim's Park">
+            <h3>Sim's Park</h3>
+            <p>A beautifully landscaped park with diverse flora and a tranquil lake.</p>
+        </div>
+        <div class="site-card">
+            <img src="tea.jpg" alt="Tea Gardens">
+            <h3>Tea Gardens</h3>
+            <p>Experience the lush green tea estates and learn about tea production.</p>
+        </div>
+               <div class="site-card">
+            <img src="law.jpg" alt="Law's Falls">
+            <h3>Law's Falls</h3>
+            <p>A stunning waterfall located amidst lush greenery, perfect for a picnic.</p>
+        </div>
+                <div class="site-card">
+            <img src="nilgiri.jpg" alt="Nilgiri Mountain Railway">
+            <h3>Nilgiri Mountain Railway</h3>
+            <p>Enjoy a breathtaking train journey through the picturesque Nilgiri hills.</p>
+        </div>
+        <div class="site-card">
+            <img src="ooty2.jpeg" alt="Ketti Valley">
+            <h3>Ketti Valley</h3>
+            <p>A stunning valley offering spectacular views and a peaceful retreat.</p>
+        </div>
+        <div class="site-card">
+            <img src="hidden.jpeg" alt="Hidden Valley">
+            <h3>Hidden Valley</h3>
+            <p>A serene location ideal for trekking and exploring nature.</p>
+        </div>
+        <div class="site-card">
+            <img src="teag.jpeg" alt="Tea Factory">
+            <h3>Coonoor Tea Factory</h3>
+            <p>Visit the tea factory to learn about the tea-making process and enjoy tastings.</p>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Services Offered</h2>
+        <ul>
+            <li>Guided Nature Walks</li>
+            <li>Bird Watching Tours</li>
+            <li>Adventure Activities (Zipline, Trekking)</li>
+            <li>Meal Plans</li>
+            <li>Photography Tours</li>
+            <li>Local Cultural Experiences</li>
+        </ul>
+    </section>
+
+    <!-- Transport Section -->
+    <section id="transport">
+        <h2>Transport Options</h2>
+        <p>From Coimbatore, Bangalore, or nearby areas, reach Coonoor by private taxi, bus, or self-drive options.</p>
+    </section>
+<section id="reviews">
+    <h2>Guest Reviews</h2>
+    <div class="review-cards">
+        <div class="review-card">
+            <h3>John Doe</h3>
+            <p>"A beautiful experience! The views from Coonoor are breathtaking, and the homestay was comfortable and welcoming."</p>
+            <div class="rating">
+                <span>⭐⭐⭐⭐⭐</span>
+            </div>
+        </div>
+        <div class="review-card">
+            <h3>Emily Smith</h3>
+            <p>"Loved the hospitality and scenic surroundings. A perfect getaway for nature lovers!"</p>
+            <div class="rating">
+                <span>⭐⭐⭐⭐</span>
+            </div>
+        </div>
+        <div class="review-card">
+            <h3>Michael Lee</h3>
+            <p>"Great place to relax and unwind. The service was excellent, though the weather was a bit unpredictable."</p>
+            <div class="rating">
+                <span>⭐⭐⭐⭐⭐</span>
+            </div>
+        </div>
+        <!-- Additional review cards can go here -->
+    </div>
+</section>
+
+
+    <!-- Map Section -->
+    <section id="map">
+        <h2>Location</h2>
+        <div id="map"></div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+    <h2>Contact Us</h2>
+    <p><strong>Email:</strong> info@coonormountainstay.com</p>
+    <p><strong>Phone:</strong> +91 98765 43210</p>
+    <p><strong>Address:</strong> Coonoor Mountain Homestay, Coonoor, Tamil Nadu, India</p>
+
+    <form action="#" method="post" class="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required placeholder="Your Name">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required placeholder="Your Email">
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required placeholder="Subject">
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required placeholder="Your Message"></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+
+    <footer>
+        <p>&copy; 2024 Coonoor Mountain Adventure. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Carousel -->
+    <script>
+        const images = document.querySelectorAll('.carousel img');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            images.forEach((img, i) => img.classList.toggle('active', i === index));
+        }
+
+        document.querySelector('.prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        });
+
+        document.querySelector('.next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+
+        // Auto-scroll every 5 seconds
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }, 5000);
+    </script>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([11.3537, 76.7950], 13); // Coonoor Coordinates
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        L.marker([11.3537, 76.7950]).addTo(map)
+            .bindPopup('Coonoor Mountain Region')
+            .openPopup();
+    </script>
+
+</body>
+</html>
